@@ -2,9 +2,9 @@ import { ButtonProps } from './types';
 import { ButtonStyle } from './elements';
 
 const Button = (props: ButtonProps) => {
-    const {children} = props;
+    const {label} = props;
   return (
-    <ButtonStyle {...props}>{children}</ButtonStyle>
+    <ButtonStyle {...props}>{label}</ButtonStyle>
   )
 }
 

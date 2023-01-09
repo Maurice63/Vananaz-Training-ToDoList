@@ -1,9 +1,9 @@
 export type ButtonProps = {
-    children: React.ReactNode,
+    label: string,
     disabled?: boolean,
-    type: "primary" | "secondary",
+    bType: "primary" | "secondary",
     color?: string;
-    size?: "small" | "middle" | "large",
-    preset?:"warning",
+    bsize?: "small" | "middle" | "large",
+    preset?: boolean,
     onClick?: (e: any) => void;
 }

@@ -1,5 +1,5 @@
 import colors from '../../../constants/config/theme/colors';
-import button from './button';
+import { Button } from "antd";
 import styled,{ css } from 'styled-components';
 import { ButtonProps } from './types';
 
@@ -21,7 +21,7 @@ const primaryButton = css`
     color: ${maincolor};
   }
   &:disabled {
-    background: white;
+    background: ${maincolor+"80"};
     color: black;
   }
 `};`;
@@ -70,17 +70,17 @@ const warningButton = css`
   }
 `};`;
 
-export const ButtonStyle = styled(button)`
+export const ButtonStyle = styled(Button)`
 font-family: roboto;
 border-radius: 4px;
-    ${(props: ButtonProps) => maincolor = props.preset === "warning"? colors.redPrimary : props?.color ? props.color: colors.bluePrimary
+    ${(props: ButtonProps) => maincolor = props.preset ? colors.redPrimary : props?.color ? props.color: colors.bluePrimary
     };
 
     ${(props: ButtonProps) => 
-        props.size === "small" ? "height: 32px; font-size: 14px":
-        props.size === "middle"? "height: 40px; font-size: 16px":
+        props.bsize === "small" ? "height: 32px; font-size: 14px":
+        props.bsize === "middle"? "height: 40px; font-size: 16px":
                                  "height: 50px; font-size: 18px"    
     };
     ${(props: ButtonProps) =>
-      props.preset === "warning"? warningButton : props.type === "primary" ? primaryButton : secondaryButton};
+      props.preset? warningButton : props.bType === "primary" ? primaryButton : secondaryButton};
 `;
