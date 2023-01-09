@@ -1,4 +1,4 @@
 export type CheckBoxProps ={
-    checked:boolean,
-    onChange: (e:any) => void,
+    checked:boolean
+    onChange: () => void,
 }
