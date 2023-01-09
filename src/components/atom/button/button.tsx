@@ -1,5 +1,5 @@
-import { ButtonProps } from './types';
-import { ButtonStyle } from './elements';
+import { ButtonProps } from "./types";
+import { ButtonStyle } from "./elements";
 
 const Button = (props: ButtonProps) => {
     const {label} = props;

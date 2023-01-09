@@ -5,6 +5,6 @@ export type ButtonProps = {
     color?: string;
     bsize?: "small" | "middle" | "large",
     preset?: boolean,
-    onClick?: (e: any) => void;
+    onClick?: () => void;
     style?: React.CSSProperties
 }
