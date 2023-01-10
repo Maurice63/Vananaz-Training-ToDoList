@@ -2,11 +2,19 @@ import { IconButtonProps } from './types'
 import { IconButtonStyled } from './elements'
 
 
-const IconButton = (props: IconButtonProps) => {
-    const {children} = props;
+const IconButton = ({children,onClick,bType,bsize,bShape,fontColor,color,disabled}: IconButtonProps) => {
     
   return (
-    <IconButtonStyled {...props}>{children}</IconButtonStyled>
+    <IconButtonStyled 
+    onClick={onClick} 
+    bType={bType}
+    bShape={bShape}
+    bsize={bsize}
+    fontColor={fontColor}
+    color={color}
+    disabled={disabled}>
+    {children}
+    </IconButtonStyled>
   )
 }
 
