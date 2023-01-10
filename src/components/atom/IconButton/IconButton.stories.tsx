@@ -15,7 +15,7 @@ export const logoutIconButton = Template.bind({});
 logoutIconButton.args = {
     bType: "iconButton",
     children: <LogoutOutlined/>,
-    fontColor: colors.bluePrimary,
+    
 };
 
 export const backIconButton = Template.bind({});
@@ -24,6 +24,7 @@ backIconButton.args = {
     bType: "iconButton",
     children: <LeftOutlined/>,
     fontColor: colors.bluePrimary,
+    color: colors.transparent
 };
 
 export const floatIconButton = Template.bind({});
@@ -31,5 +32,6 @@ export const floatIconButton = Template.bind({});
 floatIconButton.args = {
     bType: "floatIconButton",
     children: <PlusOutlined/>,
+    fontColor: colors.white,
     color: colors.bluePrimary
 };
