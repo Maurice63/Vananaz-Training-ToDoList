@@ -2,9 +2,11 @@ import React from 'react'
 import { CheckBoxProps } from './types'
 import { CheckBoxStyle } from './elements'
 
-const CheckBox = (props: CheckBoxProps) => {
+const CheckBox = ({onChange,checked}: CheckBoxProps) => {
   return (
-    <CheckBoxStyle {...props}></CheckBoxStyle>
+    <CheckBoxStyle 
+    onChange={onChange} 
+    checked={checked}/>
   )
 }
 

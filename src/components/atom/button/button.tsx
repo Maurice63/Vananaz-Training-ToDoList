@@ -1,10 +1,14 @@
 import { ButtonProps } from "./types";
 import { ButtonStyle } from "./elements";
 
-const Button = (props: ButtonProps) => {
-    const {label} = props;
+const Button = ({label,bType,...props}: ButtonProps) => {
   return (
-    <ButtonStyle {...props}>{label}</ButtonStyle>
+    <ButtonStyle 
+    label={label} 
+    bType={bType}
+    {...props}>
+    {label}
+    </ButtonStyle>
   )
 }
 
