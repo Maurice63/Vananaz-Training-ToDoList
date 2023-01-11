@@ -3,10 +3,11 @@ import colors from "../../../constants/config/theme/colors";
 
 
 export const DrawerContent = styled.div`
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     height:auto;
     width: 100%;
-    backgraundcolor: ${colors.white};
+    background: ${colors.white};
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -33,7 +34,7 @@ export const Drawercontainer = styled.div`
     z-index:1;
     display: flex;
     flex-direction: column;
-        .hide{
+        &.hide{
             display: none;
         }
 `
@@ -41,5 +42,5 @@ export const Drawercontainer = styled.div`
 export const Drawermask = styled.div`
     height: 70%;
     width: 100%;
-    backgraundcolor: ${colors.black+"20"};
+    background: ${colors.black+"50"};
 `

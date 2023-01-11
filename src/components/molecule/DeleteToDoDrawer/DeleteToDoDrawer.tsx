@@ -2,13 +2,13 @@ import Button from '../../atom/Button'
 import { DrawerButtonsContainer, Drawercontainer, DrawerContent, Drawermask, DrawerText } from './elements'
 import { DeleteToDoDrawerProps } from './types'
 
-const DeleteToDoDrawer = ({onYes,hidden,Hide}: DeleteToDoDrawerProps) => {
-    const DoNothing = () =>{
-        Hide();
+const DeleteToDoDrawer = ({onYes,hidden,hide}: DeleteToDoDrawerProps) => {
+    const cancel = () =>{
+        hide();
     }
-    const DoSomething = () =>{
+    const proceed = () =>{
         onYes()
-        Hide();
+        hide();
     }
   return (
     <Drawercontainer className={hidden?"hide":" "}>
@@ -16,8 +16,8 @@ const DeleteToDoDrawer = ({onYes,hidden,Hide}: DeleteToDoDrawerProps) => {
         <DrawerContent>
         <DrawerText>Delete to do?</DrawerText>
         <DrawerButtonsContainer>
-            <Button bType={"secondary"} bsize={"middle"} onClick={DoNothing} label={"No"} preset/>
-            <Button bType={"primary"} bsize={"middle"} onClick={DoSomething} label={"Yes"}/>
+            <Button bType={"secondary"} bsize={"middle"} onClick={cancel} label={"No"} preset/>
+            <Button bType={"primary"} bsize={"middle"} onClick={proceed} label={"Yes"}/>
         </DrawerButtonsContainer>
         </DrawerContent>
     </Drawercontainer>

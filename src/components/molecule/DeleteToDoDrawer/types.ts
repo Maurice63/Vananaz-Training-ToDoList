@@ -1,5 +1,5 @@
 export type DeleteToDoDrawerProps ={
 hidden: boolean,
-Hide: ()=> void,
+hide: ()=> void,
 onYes: ()=> void,
 }

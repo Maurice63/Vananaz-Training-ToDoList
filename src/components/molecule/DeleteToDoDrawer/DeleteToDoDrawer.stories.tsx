@@ -1,5 +1,4 @@
 import DeleteToDoDrawer from '.';
-import { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
@@ -8,10 +7,10 @@ export default {
 } as ComponentMeta<typeof DeleteToDoDrawer>;
 
 const Template: ComponentStory<typeof DeleteToDoDrawer> = (args) => {
-const [hidden,setHidden] = useState(false);
-return(<DeleteToDoDrawer hidden={hidden}
+
+return(<DeleteToDoDrawer hidden={args.hidden}
     onYes={()=>{}}
-    Hide={()=> {setHidden(true)}} />)
+    hide={()=> {args.hidden=false}} />)
 };
 
 export const Primary = Template.bind({});
