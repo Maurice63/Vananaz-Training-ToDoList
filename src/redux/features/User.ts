@@ -14,7 +14,7 @@ export type userProps = {
     }
 }
 
-const usersSlice = createSlice({
+const userSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
@@ -27,4 +27,4 @@ const usersSlice = createSlice({
 
 export const selectAllUsers = (state :userProps) => state.user;
 
-export default usersSlice.reducer
+export default userSlice.reducer
