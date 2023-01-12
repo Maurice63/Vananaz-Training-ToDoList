@@ -6,7 +6,7 @@ import IconButton from '../IconButton';
 import colors from '../../../constants/config/theme/colors';
 
 
-const KebabMenu = ({onDelete,onUpdate}: KebabMenuProps) => {
+const KebabMenu = ({onDelete,onUpdate,onOpen,onBlur}: KebabMenuProps) => {
     const content =(
         <PopUpContainer>
         <PopUpItem onClick={onUpdate}>
@@ -19,7 +19,7 @@ const KebabMenu = ({onDelete,onUpdate}: KebabMenuProps) => {
     );
   return (
     <PopUp placement="left" arrowPointAtCenter trigger="click" content={content}>
-        <IconButton bType={"iconButton"} bsize={"middle"} bShape={"square"} fontColor={colors.bluePrimary}>
+        <IconButton bType={"iconButton"} bsize={"middle"} bShape={"square"} fontColor={colors.bluePrimary} onClick={onOpen} onBlur={onBlur}>
         <MoreOutlined style={{"border": "1px solid transparent"}}/>
         </IconButton>
     </PopUp>

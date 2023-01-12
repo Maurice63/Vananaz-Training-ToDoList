@@ -7,4 +7,5 @@ export type IconButtonProps = {
     color?: string;
     bsize?: "small" | "middle" | "large",
     onClick?: () => void;
+    onBlur?: () => void;
 }
