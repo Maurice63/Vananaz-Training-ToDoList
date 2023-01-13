@@ -7,4 +7,5 @@ export type ToDoItemProps = {
     deleteDrawer?:boolean;
     selected?: boolean;
     completed?: boolean;
+    onTextClick: () => void;
 }
