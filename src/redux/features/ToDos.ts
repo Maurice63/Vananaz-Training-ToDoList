@@ -72,12 +72,12 @@ const todosSlice = createSlice({
         },
         deletetodo(state, action:PayloadAction<todoprops>) {
             const { id } = action.payload
-            state = state.filter((todo) => todo.id !== id);
+            state.splice(state.findIndex((todo) => todo.id === id),1)
         },
         deletetodos(state, action:PayloadAction<todoprops[]>) {
             const todos = action.payload
             todos.forEach(currenttodo => {
-                state = state.filter((todo) => todo.id !== currenttodo.id);
+                state.splice(state.findIndex((todo) => todo.id === currenttodo.id),1)
             });
         },
     }

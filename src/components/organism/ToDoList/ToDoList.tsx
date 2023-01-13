@@ -6,34 +6,39 @@ import ToDoItem from '../../molecule/ToDoItem'
 import { ToDoListContainer, ToDoListList } from './elements'
 import { ToDoListProps } from './types'
 import { useSelector,useDispatch } from "react-redux"
-import Toast from '../../atom/Toast'
 
 const ToDoList = ({selectionMode,UpdateCallback}: ToDoListProps) => {
+    //global state >
+    const todos = useSelector(selectAlltodos)
+    const dispatch = useDispatch()
+    //<
+    //local states >
     const [selectedToDos,setSelectedToDos] = useState<todoprops[]>([]);
     const [targetToDo,setTargetToDo] = useState<todoprops>({} as todoprops);
     const [deletedrawer,setDeletedrawer] = useState<boolean>(true);
-    const todos = useSelector(selectAlltodos)
-    const dispatch = useDispatch()
+    //<
+    //sorts between complete and uncomplete >
     const uncompletedtodos = todos.filter(currentTodo =>{return !currentTodo.complete})
     const completedtodos = todos.filter(currentTodo =>{return currentTodo.complete})
-    const todoitem = (todo: todoprops) => {
-
-        return <ToDoItem 
-        onSelect={()=>{ if(selectedToDos.includes(todo)){
+    //<
+        const todoitem = (todo: todoprops) => {
+            return <ToDoItem 
+            onSelect={()=>{ if(selectedToDos.includes(todo)){
                setSelectedToDos(selectedToDos.filter(currentTodo =>{ return !(currentTodo.id===todo.id)}))
                } else{ 
                setSelectedToDos(prevselectedToDos => [...prevselectedToDos,todo])
                }
            }} 
-        selected={selectedToDos.includes(todo)} 
-        selectionMode={selectionMode} 
-        key={todo.id} 
-        value={todo.todotext} 
-        completed={todo.complete}
-        onTextClick={()=>{setTargetToDo(todo);dispatch(completetodo(targetToDo))}}
-        onDelete={()=>{setTargetToDo(todo);setDeletedrawer(false)}}
-        onUpdate={()=>{UpdateCallback()}}/>
-       }
+            selected={selectedToDos.includes(todo)} 
+            selectionMode={selectionMode} 
+            key={todo.id} 
+            value={todo.todotext} 
+            completed={todo.complete}
+            onTextClick={()=>{setTargetToDo(todo);dispatch(completetodo(targetToDo))}}
+            onDelete={()=>{setTargetToDo(todo);setDeletedrawer(false)}}
+            onUpdate={()=>{UpdateCallback()}}/>
+        }
+
   return (
     <ToDoListContainer>
         <ToDoListList>
@@ -45,13 +50,13 @@ const ToDoList = ({selectionMode,UpdateCallback}: ToDoListProps) => {
             }
         </ToDoListList>
             <DeleteSelectedToDoDrawer 
-            onDeleteSelected={()=>{<><Toast duration={3} message={"To Do's Deleted"}/>{dispatch(deletetodos([...selectedToDos]))}</>}} 
-            onCompleteSelected={()=>{<><Toast duration={3} message={"To Do's Completed"}/>{dispatch(completetodos([...selectedToDos]))}</>}} 
+            onDeleteSelected={()=>{dispatch(deletetodos([...selectedToDos]))}} 
+            onCompleteSelected={()=>{dispatch(completetodos([...selectedToDos]))}} 
             onSelectAll={()=>{setSelectedToDos([...todos])}} 
             hide={()=>setSelectedToDos([])} 
             hidden={selectedToDos.length===0}/>
             <DeleteToDoDrawer 
-            onYes={()=> {<><Toast duration={3} message={"To Do Deleted"}/>{dispatch(deletetodo(targetToDo))}</>}} 
+            onYes={()=> {dispatch(deletetodo(targetToDo))}} 
             hide={()=>{setDeletedrawer(true)}} 
             hidden={deletedrawer}/>
     </ToDoListContainer>
