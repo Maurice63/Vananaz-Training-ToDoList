@@ -4,7 +4,7 @@ export type TextInputProps = {
     placeholder?: string;
     value?: string;
     onChange?: () => void;
-    onPressEnter?: () => void;
+    onPressEnter?: (e: any) => void;
     hidden?: boolean;
     allowClear?: boolean;
 };
