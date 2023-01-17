@@ -3,7 +3,7 @@ import { TextInputStyle } from './elements'
 import { TextInputProps } from './types'
 
 
-const TextInput = ({disabled,prefix,placeholder,allowClear,onChange,onPressEnter,hidden,value}: TextInputProps) => {
+const TextInput = ({disabled,prefix,placeholder,allowClear,onChange,onPressEnter,hidden,value,style}: TextInputProps) => {
   return (
     <TextInputStyle
     disabled={disabled}
@@ -14,6 +14,7 @@ const TextInput = ({disabled,prefix,placeholder,allowClear,onChange,onPressEnter
     onPressEnter={onPressEnter}
     hidden={hidden}
     value={value}
+    style={style}
     />
   )
 }
