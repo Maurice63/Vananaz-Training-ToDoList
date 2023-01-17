@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { LoginContainer, LoginForm, Loginh1, LoginHeader, Loginp } from './elements'
-import undraw_To_Do_List from '../../../constants/assets/undraw_To_do_list_re_9nt71.png'
+import undraw_To_Do_List from '../../../assets/undraw_To_do_list_re_9nt71.png'
 import TextInput from '../../atom/TextInput'
 import {Input} from 'antd'
 import Button from '../../atom/Button'
