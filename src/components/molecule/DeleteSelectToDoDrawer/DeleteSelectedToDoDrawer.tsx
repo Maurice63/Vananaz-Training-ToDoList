@@ -3,7 +3,7 @@ import colors from '../../../constants/config/theme/colors';
 import { Drawercontainer, DrawerButton } from './elements'
 import { DeleteSelectedToDoDrawerProps } from './types'
 
-const DeleteToDoDrawer = ({onCompleteSelected,onDeleteSelected,onSelectAll,hidden,hide}: DeleteSelectedToDoDrawerProps) => {
+const DeleteSelectedToDoDrawer = ({onCompleteSelected,onDeleteSelected,onSelectAll,hidden,hide}: DeleteSelectedToDoDrawerProps) => {
     const completeSelected = () =>{
         onCompleteSelected();
         hide();
@@ -21,4 +21,4 @@ const DeleteToDoDrawer = ({onCompleteSelected,onDeleteSelected,onSelectAll,hidde
   )
 }
 
-export default DeleteToDoDrawer
+export default DeleteSelectedToDoDrawer
