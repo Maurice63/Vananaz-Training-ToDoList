@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { LoginContainer, LoginForm, Loginh1, LoginHeader, Loginp } from './elements'
+import { LoginButtonField, LoginContainer, LoginForm, Loginh1, LoginHeader, LoginHeaderimgField, LoginHeaderTextField, Loginp, LoginTextField } from './elements'
 import undraw_To_Do_List from '../../../assets/undraw_To_do_list_re_9nt71.png'
 import TextInput from '../../atom/TextInput'
 import {Input} from 'antd'
@@ -39,14 +39,26 @@ const Login = (props:props) => {
   return (
     <LoginContainer>
         <LoginHeader>
-            <img src={undraw_To_Do_List} alt={"To Do List"} width={"20%"}/>
+            <LoginHeaderimgField>
+            <img src={undraw_To_Do_List} alt={"To Do List"} width={"100%"}/>
+            </LoginHeaderimgField>
+            <LoginHeaderTextField>
             <Loginh1>ToDoish</Loginh1>
             <Loginp>Do your wish, very easyish</Loginp>
+            </LoginHeaderTextField>
         </LoginHeader>
         <LoginForm>
-            <TextInput placeholder='Email' allowClear value={email} style={{"width":"80%"}} onChange={onEmailChange} onPressEnter={onEnterEmail}/>
-            <Input.Password placeholder="Password" allowClear value={password} style={{"width":"80%"}} onChange={onPasswordChange} onPressEnter={onEnterPassword} />
-            <Button label={"Login"} bType={"primary"} disabled={!canLogin} style={{"width":"80%"}}></Button>
+            <LoginTextField>
+            <p>Email</p>
+            <TextInput placeholder='Email' allowClear value={email} style={{"width":"100%"}} onChange={onEmailChange} onPressEnter={onEnterEmail}/>
+            </LoginTextField>
+            <LoginTextField>
+            <p>Password</p>
+            <Input.Password aria-label={"Password"} placeholder="Password" allowClear value={password} style={{"width":"100%"}} onChange={onPasswordChange} onPressEnter={onEnterPassword} />
+            </LoginTextField>
+            <LoginButtonField>
+            <Button label={"Login"} bType={"primary"} disabled={!canLogin} style={{"width":"100%"}}></Button>
+            </LoginButtonField>
         </LoginForm>
     </LoginContainer>
   )
