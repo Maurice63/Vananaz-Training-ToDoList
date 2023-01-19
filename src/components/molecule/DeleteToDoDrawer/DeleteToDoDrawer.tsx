@@ -4,6 +4,7 @@ import { DeleteToDoDrawerProps } from './types'
 
 const DeleteToDoDrawer = ({onYes,hidden,hide}: DeleteToDoDrawerProps) => {
     const cancel = () =>{
+        //No
         hide();
     }
     const proceed = () =>{

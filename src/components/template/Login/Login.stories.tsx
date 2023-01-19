@@ -2,7 +2,7 @@ import Login from '.'
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
-  title: 'Atoms/Login',
+  title: 'Template/Login',
   component: Login,
 } as ComponentMeta<typeof Login>;
 

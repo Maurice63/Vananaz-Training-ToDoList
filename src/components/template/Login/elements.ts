@@ -23,7 +23,7 @@ flex-direction: column;
 justify-content: space-around;
 `
 
-export const Loginp = styled.p`
+export const LoginP = styled.p`
 color:${colors.bluePrimary};
 font-family: 'Roboto';
 font-style: normal;

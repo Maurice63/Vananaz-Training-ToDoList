@@ -18,7 +18,7 @@ const iconButton = css`
   }
   &:focus {
     color: ${bFontColor};
-    background ${bMaincolor};
+    background: ${bMaincolor};
     border: 1.5px solid ${bMaincolor};
   }
   &:disabled {
@@ -42,7 +42,7 @@ const floatIconButton = css`
   }
   &:focus {
     color: ${bFontColor};
-    background ${bMaincolor};
+    background: ${bMaincolor};
     border: 1.5px solid ${bMaincolor};
   }
   &:disabled {
