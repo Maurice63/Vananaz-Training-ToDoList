@@ -7,7 +7,7 @@ import { Container, NoToDoContainer, NoToDoImg, NoToDop,ToDoListContainer, ToDoL
 import { ToDoListProps } from './types'
 import { useSelector,useDispatch } from "react-redux"
 import Toast from '../../atom/Toast'
-import Vector from '../../../assets/Vector.png'
+import checkListSVG from '../../../assets/checkListSVG.png'
 import TextLink from '../../atom/TextLink'
 
 
@@ -40,21 +40,21 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
         }
     //<
     //>
-    const Filled = sortedToDos.length;
+    const isFilled = sortedToDos.length;
     const selectedAll = sortedToDos === selectedToDos;
-    const NoReduxToDos = !(reduxToDos.length > 0);
+    const noReduxToDos = !(reduxToDos.length > 0);
     //<
     //Additional helper func>
     useEffect(()=>{setSelectedToDos([])},[selectionMode])
-    const DrawerOnYes = ()=> {
+    const onYes = ()=> {
         Toast({message:"To Do Deleted."}); 
         dispatch(deletetodo(targetToDo)); 
     }
-    const SDrawerOnDeleteSelected = () =>{
+    const onDeleteAllSelected = () =>{
         Toast({message:"To Dos Deleted."}); 
         dispatch(deletetodos([...selectedToDos])); 
     }
-    const SDrawerOnCompleteSelected = () =>{
+    const onCompleteAllSelected = () =>{
         Toast({message:"To Dos Completed."});
         dispatch(completetodos([...selectedToDos])); 
     }
@@ -95,34 +95,34 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
         }        
   return (
     <Container>
-    {Filled?
+    {isFilled?
     <>
-        <ToDoListContainer className={Filled? "": "NoToDo"}>
+        <ToDoListContainer className={isFilled? "": "NoToDo"}>
             <ToDoListList>
                 {sortedToDos.map((todo: todoprops) =>{ return todoitem(todo)})}
             </ToDoListList>
         </ToDoListContainer>
         <DeleteSelectedToDoDrawer 
-        onDeleteSelected={()=>{SDrawerOnDeleteSelected()}} 
-        onCompleteSelected={()=>{SDrawerOnCompleteSelected()}} 
+        onDeleteSelected={()=>{onDeleteAllSelected()}} 
+        onCompleteSelected={()=>{onCompleteAllSelected()}} 
         onSelectAll={()=>{onSelectAll()}} 
         allSelected={selectedAll}
         hide={()=>setSelectedToDos([])} 
         hidden={selectedToDos.length===0}/>
         <DeleteToDoDrawer 
-        onYes={()=> {DrawerOnYes()}} 
+        onYes={()=> {onYes()}} 
         hide={()=>{setDeletedrawer(true)}} 
         hidden={deletedrawer}/>
         </>
         :
         <NoToDoContainer>
             <NoToDoImg>
-                <img src={Vector} alt={"No To Do Icon"} width={"100%"}/>
+                <img src={checkListSVG} alt={"No To Do Icon"} width={"100%"}/>
             </NoToDoImg>
-            {NoReduxToDos&&selectionMode? <NoToDop>{"No to do yet"}</NoToDop>: 
-            NoReduxToDos? <NoToDop>{"To do list increases productivity"}</NoToDop>:
+            {noReduxToDos&&selectionMode? <NoToDop>{"No to do yet"}</NoToDop>: 
+            noReduxToDos? <NoToDop>{"To do list increases productivity"}</NoToDop>:
             <NoToDop>{"No to do found."}</NoToDop>}
-            {NoReduxToDos? <TextLink onClick={addToDo} text={"Add your first to do"}/> : <NoToDop>{"Try different keywords."}</NoToDop>}
+            {noReduxToDos? <TextLink onClick={addToDo} text={"Add your first to do"}/> : <NoToDop>{"Try different keywords."}</NoToDop>}
         </NoToDoContainer>
     }
     </Container>
