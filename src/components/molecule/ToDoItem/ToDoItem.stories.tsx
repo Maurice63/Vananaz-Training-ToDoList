@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
 
 export default {
-  title: 'Atoms/ToDoItem',
+  title: 'Molecule/ToDoItem',
   component: ToDoItem,
 } as ComponentMeta<typeof ToDoItem>;
 

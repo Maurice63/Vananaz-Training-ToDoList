@@ -4,4 +4,5 @@ export type DeleteSelectedToDoDrawerProps ={
     onSelectAll: ()=> void,
     onCompleteSelected: ()=> void,
     onDeleteSelected: ()=> void,
+    allSelected?: boolean;
     }

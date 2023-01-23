@@ -51,6 +51,16 @@ const todosSlice = createSlice({
                 }
             }
         },
+        updatetodo(state, action:PayloadAction<todoprops>) {
+            const { id,todotext } = action.payload
+            const existingtodo = state.find(todo => todo.id === id)
+            if (existingtodo) {
+                existingtodo.todotext=todotext
+                state.splice(state.findIndex((todo) => todo.id === id),1)
+                state.push(existingtodo)
+            }
+            
+        },
         completetodo(state, action:PayloadAction<todoprops>) {
             const { id } = action.payload
             const existingtodo = state.find(todo => todo.id === id)
@@ -85,6 +95,6 @@ const todosSlice = createSlice({
 
 export const selectAlltodos = (state: todos) => state.todos;
 
-export const { todoAdded, completetodo, completetodos, deletetodo, deletetodos } = todosSlice.actions
+export const { todoAdded, completetodo, completetodos, deletetodo, deletetodos, updatetodo } = todosSlice.actions
 
 export default todosSlice.reducer

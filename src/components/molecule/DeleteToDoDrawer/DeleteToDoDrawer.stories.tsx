@@ -2,7 +2,7 @@ import DeleteToDoDrawer from '.';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 export default {
-  title: 'Atoms/DeleteToDoDrawer',
+  title: 'Molecule/DeleteToDoDrawer',
   component: DeleteToDoDrawer,
 } as ComponentMeta<typeof DeleteToDoDrawer>;
 

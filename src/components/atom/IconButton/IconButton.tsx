@@ -2,7 +2,7 @@ import { IconButtonProps } from './types'
 import { IconButtonStyled } from './elements'
 
 
-const IconButton = ({children,onClick,bType,bsize,bShape,fontColor,color,disabled,onBlur}: IconButtonProps) => {
+const IconButton = ({children,onClick,bType,bsize,bShape,fontColor,color,disabled,onBlur,style}: IconButtonProps) => {
     
   return (
     <IconButtonStyled 
@@ -13,7 +13,8 @@ const IconButton = ({children,onClick,bType,bsize,bShape,fontColor,color,disable
     fontColor={fontColor}
     color={color}
     disabled={disabled}
-    onBlur={onBlur}>
+    onBlur={onBlur}
+    style={style}>
     {children}
     </IconButtonStyled>
   )

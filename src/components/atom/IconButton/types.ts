@@ -1,3 +1,5 @@
+import React from "react";
+
 export type IconButtonProps = {
     children: React.ReactNode,
     disabled?: boolean,
@@ -8,4 +10,5 @@ export type IconButtonProps = {
     bsize?: "small" | "middle" | "large",
     onClick?: () => void;
     onBlur?: () => void;
+    style?: React.CSSProperties;
 }
