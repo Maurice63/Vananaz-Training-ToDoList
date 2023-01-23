@@ -58,6 +58,19 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
         Toast({message:"To Dos Completed."});
         dispatch(completetodos([...selectedToDos])); 
     }
+    const todoitemOnSelect = (todo: todoprops) => { if(selectedToDos.includes(todo)){
+        setSelectedToDos(selectedToDos.filter(currentTodo =>{ return !(currentTodo.id===todo.id)}))
+        } else{ 
+        setSelectedToDos(prevselectedToDos => [...prevselectedToDos,todo])
+        }
+    }
+    const todoitemOnTextClick = (todo: todoprops) => {
+        dispatch(completetodo(todo)); 
+    }
+    const todoitemOnDelete = (todo: todoprops) =>{ 
+        setTargetToDo(todo);setDeletedrawer(false); 
+    }
+    const todoitemOnUpdate = (todo: todoprops) =>{UpdateCallback(todo)}
     const onSelectAll = () =>{
         if(selectedAll){
             setSelectedToDos([])
@@ -65,6 +78,18 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
             setSelectedToDos([...sortedToDos])
         }
     }
+    const PreparedTodoitem = (todo: todoprops) => {
+            return <ToDoItem 
+            onSelect={()=>todoitemOnSelect(todo)} 
+            selected={selectedToDos.includes(todo)} 
+            selectionMode={selectionMode} 
+            key={todo.id} 
+            value={todo.todotext} 
+            completed={todo.complete}
+            onTextClick={()=>{todoitemOnTextClick(todo)}}
+            onDelete={()=>{todoitemOnDelete(todo)}}
+            onUpdate={()=>{todoitemOnUpdate(todo)}}/>
+        }
     //<       
   return (
     <Container>
@@ -74,13 +99,7 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
             <ToDoListList>
                 {sortedToDos.map((todo: todoprops) =>
                 { 
-                return PreparedTodoitem(todo,
-                    selectedToDos,
-                    setSelectedToDos,
-                    setTargetToDo,
-                    setDeletedrawer,
-                    UpdateCallback,
-                    selectionMode)
+                return PreparedTodoitem(todo)
                 })
                 }
             </ToDoListList>
@@ -112,41 +131,6 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
   )
 }
 
-const PreparedTodoitem = (
-                  todo: todoprops,
-                  selectedToDos:todoprops[],
-                  setSelectedToDos:React.Dispatch<React.SetStateAction<todoprops[]>>,
-                  setTargetToDo: React.Dispatch<React.SetStateAction<todoprops>>,
-                  setDeletedrawer: React.Dispatch<React.SetStateAction<boolean>>,
-                  UpdateCallback: (todo: todoprops) => void,
-                  selectionMode: boolean | undefined
-                ) => {
-    const dispatch = useDispatch()
-    //Additional helper func>
-    const todoitemOnSelect = () => { if(selectedToDos.includes(todo)){
-        setSelectedToDos(selectedToDos.filter(currentTodo =>{ return !(currentTodo.id===todo.id)}))
-        } else{ 
-        setSelectedToDos(prevselectedToDos => [...prevselectedToDos,todo])
-        }
-    }
-    const todoitemOnTextClick = () => {
-        dispatch(completetodo(todo)); 
-    }
-    const todoitemOnDelete = () =>{ 
-        setTargetToDo(todo);setDeletedrawer(false); 
-    }
-    const todoitemOnUpdate = () =>{UpdateCallback(todo)}
-    //<
-    return <ToDoItem 
-    onSelect={()=>todoitemOnSelect()} 
-    selected={selectedToDos.includes(todo)} 
-    selectionMode={selectionMode} 
-    key={todo.id} 
-    value={todo.todotext} 
-    completed={todo.complete}
-    onTextClick={()=>{todoitemOnTextClick()}}
-    onDelete={()=>{todoitemOnDelete()}}
-    onUpdate={()=>{todoitemOnUpdate()}}/>
-}
+
 
 export default ToDoList
