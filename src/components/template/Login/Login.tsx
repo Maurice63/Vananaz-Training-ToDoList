@@ -2,21 +2,22 @@ import { useState } from 'react'
 import { LoginButtonField, 
     LoginContainer, 
     LoginForm, 
+    LoginFormP, 
     Loginh1, 
     LoginHeader, 
     LoginHeaderimgField, 
     LoginHeaderTextField, 
     LoginP, 
     LoginTextField } from './elements'
-import undraw_To_Do_List from '../../../assets/undraw_To_do_list_re_9nt71.png'
+import undraw_To_Do_List from '../../../assets/undraw_To_do_list_re_9nt71.svg'
 import TextInput from '../../atom/TextInput'
 import {Input} from 'antd'
 import Button from '../../atom/Button'
 
 type props = {
-
+    onLogin: ()=> void
 }
-const Login = (props:props) => {
+const Login = ({onLogin}:props) => {
     const [email,setEmail] = useState<string>("")
     const [password,setPassword] = useState<string>("")
     //TextInputs helper functions>
@@ -60,7 +61,7 @@ const Login = (props:props) => {
         </LoginHeader>
         <LoginForm>
             <LoginTextField>
-            <p>Email</p>
+            <LoginFormP>Email</LoginFormP>
             <TextInput placeholder='Email@gmail.com' 
             allowClear 
             value={email} 
@@ -69,7 +70,7 @@ const Login = (props:props) => {
             onPressEnter={onEnterEmail}/>
             </LoginTextField>
             <LoginTextField>
-            <p>Password</p>
+            <LoginFormP>Password</LoginFormP>
             <Input.Password placeholder="Password" 
             allowClear 
             value={password} 
@@ -81,7 +82,8 @@ const Login = (props:props) => {
             <Button label={"Login"} 
             bType={"primary"} 
             disabled={!checkCanLogIn()} 
-            style={{"width":"100%"}}/>
+            style={{"width":"100%", marginTop:"30px"}}
+            onClick={onLogin}/>
             </LoginButtonField>
         </LoginForm>
     </LoginContainer>
