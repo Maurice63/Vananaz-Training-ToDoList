@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* *::before *::after {
+  box-sizing: border-box;
+  }
+
+  .sb-show-main.sb-main-padded{
+    padding: 0px !important;
+  }
+
+  * {
+  margin: 0;
+  }
+  
+  html, body, #root {
+  height: 100%;
+  
+  }
+  
+  body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  }
+  
+  img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  }
+  
+  input, button, textarea, select {
+    font-family: 'Roboto';
+    font-style: normal;
+  }
+  
+  p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto';
+    font-style: normal;
+  }
+  
+  #root, #__next {
+  isolation: isolate;
+  }
