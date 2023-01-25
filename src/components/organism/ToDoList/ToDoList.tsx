@@ -115,8 +115,8 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
         onYes={()=> {onYes()}} 
         hide={()=>{setDeletedrawer(true)}} 
         hidden={deletedrawer}/>
-        </>
-        :
+    </>
+    :
         <NoToDoContainer>
             <NoToDoImg>
                 <img src={checkListSVG} alt={"No To Do Icon"} width={"100%"}/>

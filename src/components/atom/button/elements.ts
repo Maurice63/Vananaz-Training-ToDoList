@@ -1,5 +1,4 @@
 import colors from '../../../constants/config/theme/colors';
-import { Button } from "antd";
 import styled,{ css } from 'styled-components';
 import { ButtonProps } from './types';
 
@@ -8,37 +7,37 @@ let maincolor = "";
 const primaryButton = css`
   ${() => `
   background: ${maincolor};
-  color: "white";
+  color: white;
   border: 1.5px solid ${maincolor};
   &:hover {
     border: 1.5px solid ${maincolor};
-    background: ${maincolor+"80"};
-    color: ${maincolor};
+    background: ${maincolor};
+    color: white;
   }
   &:focus {
-    border: 1.5px solid ${maincolor};
-    background: ${maincolor+"80"};
-    color: ${maincolor};
+    border: 1.5px solid ${maincolor+"80"};
+    background: ${maincolor};
+    color: white;
   }
   &:disabled {
-    background: ${maincolor+"80"};
-    color: black;
+    background: ${colors.blueSecondary};
+    color: white;
   }
 `};`;
 
 const secondaryButton = css`
   ${() => `
   border: 1.5px solid transparent;
-  background: ${maincolor+"80"};
+  background: ${maincolor+"15"};
   color: ${maincolor};
   &:hover {
-    border: 1.5px solid white;
-    background: ${maincolor};
-    color: white;
+    background: ${maincolor+"15"};
+    color: ${maincolor};
+    border: 1.5px solid ${maincolor};
   }
   &:focus {
-    color: white;
-    background ${maincolor};
+    background: ${maincolor+"15"};
+    color: ${maincolor};
     border: 1.5px solid ${maincolor};
   }
   &:disabled {
@@ -51,16 +50,16 @@ const secondaryButton = css`
 const warningButton = css`
   ${() => `
   border: 1.5px solid transparent;
-  background: ${maincolor+"80"};
+  background: ${colors.pinkSecondary};
   color: ${maincolor};
   &:hover {
-    border: 1.5px solid white;
-    background: ${maincolor};
-    color: white;
+    border: 1.5px solid ${maincolor};
+    background: ${colors.pinkSecondary};
+    color: ${maincolor};
   }
   &:focus {
-    color: white;
-    background ${maincolor};
+    color: ${maincolor};
+    background: ${colors.pinkSecondary};
     border: 1.5px solid ${maincolor};
   }
   &:disabled {
@@ -70,7 +69,7 @@ const warningButton = css`
   }
 `};`;
 
-export const ButtonStyle = styled(Button)`
+export const ButtonStyle = styled.button`
 font-family: roboto;
 border-radius: 4px;
     ${(props: ButtonProps) => maincolor = props.preset ? colors.redPrimary : props?.color ? props.color: colors.bluePrimary

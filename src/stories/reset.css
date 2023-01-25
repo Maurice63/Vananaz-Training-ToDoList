@@ -3,13 +3,18 @@
 * *::before *::after {
   box-sizing: border-box;
   }
-  
+
+  .sb-show-main.sb-main-padded{
+    padding: 0px !important;
+  }
+
   * {
   margin: 0;
   }
   
   html, body, #root {
   height: 100%;
+  
   }
   
   body {
@@ -25,25 +30,13 @@
   input, button, textarea, select {
     font-family: 'Roboto';
     font-style: normal;
-    line-height: 16px;
   }
   
   p, h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto';
     font-style: normal;
-    line-height: 16px;
   }
   
   #root, #__next {
   isolation: isolate;
   }
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

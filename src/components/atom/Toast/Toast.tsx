@@ -1,5 +1,6 @@
 import { message as AntToast } from 'antd';
-import { MessageContainer,GlobalStyle } from './elements';
+import { ResetGlobalStyles } from '../../../constants/config/reset';
+import { MessageContainer } from './elements';
 import { ToastProps } from './types';
 
 const Toast = ({style,duration,message}: ToastProps) => {
@@ -20,7 +21,7 @@ const Toast = ({style,duration,message}: ToastProps) => {
             },
           }    
         )}
-        <GlobalStyle/>
+        <ResetGlobalStyles/>
         </>)
 }
 
