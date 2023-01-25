@@ -1,11 +1,9 @@
 import { ResetGlobalStyles } from '../../../constants/config/reset'
 import Login from '../../template/Login'
 
-type Props = {
-    
-}
 
-const LogInPage = (props: Props) => {
+
+const LogInPage = () => {
     //need to add firebaseauth
     const onLogin = ()=> {
         //add login
