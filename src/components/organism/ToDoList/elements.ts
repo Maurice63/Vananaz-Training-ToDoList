@@ -3,6 +3,7 @@ import colors from "../../../constants/config/theme/colors";
 
 export const Container = styled.div`
     display: flex;
+    flex: 1;
     align-items:center;
     align-content:center;
     flex-direction: column;
@@ -58,6 +59,8 @@ export const NoToDoContainer = styled.div`
 `
 
 export const NoToDoImg = styled.div`
+   max-heigth: 50px;
+   max-width: 38px; 
    width: 50%;
    heigth: fit content;
    display: block;

@@ -5,11 +5,10 @@ import colors from "../../../constants/config/theme/colors";
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-content: center;
     align-items: center;
     padding: 15px;
-    
+    height: -webkit-fill-available;
 `
 //doc<
 
