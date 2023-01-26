@@ -5,9 +5,7 @@ import { ToastProps } from './types';
 
 const Toast = ({style,duration,message}: ToastProps) => {
     return(<>
-        {AntToast.config({
-        transitionName: 'move-down',
-        })}
+    <ResetGlobalStyles/>
         {
         AntToast.success({
             content: <MessageContainer>{message}</MessageContainer>,
@@ -21,7 +19,7 @@ const Toast = ({style,duration,message}: ToastProps) => {
             },
           }    
         )}
-        <ResetGlobalStyles/>
+        
         </>)
 }
 

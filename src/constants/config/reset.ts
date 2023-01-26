@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const ResetGlobalStyles = createGlobalStyle`
-
   .ant-message-notice .ant-message-notice-content{
     padding:0px;
   }
