@@ -25,10 +25,10 @@ export const ToDoItemContainer = styled.div`
     display: flex;
     align-items:center;
     align-content:center;
-    padding-left:10px;
-    padding-right:10px;
     height:auto;
+    min-height:28px;
     width:100%;
+    padding-bottom: 10px;
     &.justified{
         justify-content: space-between;
     }

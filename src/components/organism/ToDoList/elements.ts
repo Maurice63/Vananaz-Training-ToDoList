@@ -6,11 +6,10 @@ export const Container = styled.div`
     align-items:center;
     align-content:center;
     flex-direction: column;
-    padding-left:10px;
-    padding-right:10px;
     height:100%;
     width:100%;
     justify-content: center;
+    overflow: hidden;
 `;
 
 export const ToDoListContainer = styled.div`
@@ -20,6 +19,7 @@ export const ToDoListContainer = styled.div`
     flex-direction: column;
     height:100%;
     width:100%;
+    overflow: auto;
 `;
 
 export const ToDoListList = styled.div`
@@ -29,7 +29,6 @@ export const ToDoListList = styled.div`
     flex-direction: column;
     height:100%;
     width:100%;
-    overflowY: 'scroll'
 `;
 
 export const ToDoListdrawers = styled.div`
