@@ -3,11 +3,13 @@ import colors from "../../../constants/config/theme/colors";
 
 //doc>
 export const Container = styled.div`
-    width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 1vh;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    padding: 15px;
+    
 `
 //doc<
 
@@ -19,6 +21,7 @@ export const ToDoListHeaderContainer = styled.div`
     justify-content: space-between;
     align-content: center;
     align-items: center;
+    padding-bottom: 15px; 
      &.back {
         justify-content: flex-start;
      }
@@ -40,6 +43,7 @@ export const ToDoListHeaderText = styled.h1`
 export const ToDoListInputsContainer = styled.div`
 width: 100%;
 height: fit-content;
+padding-bottom: 10px;
 display: flex;
 align-content: center;
 align-items: center;
@@ -57,8 +61,9 @@ display: flex;
 //listcontent>
 export const ToDoListListContent = styled.div`
 width: 100%;
-height: 100;
+height: 100%;
 display: flex;
+
      &.hide{
       display: none;
      }

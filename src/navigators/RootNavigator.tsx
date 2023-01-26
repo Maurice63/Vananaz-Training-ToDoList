@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
-import { routes,routesWithRedirect} from './Routes'
+import { protectedRoutes, routes,routesWithRedirect} from './Routes'
 
 type Props = {
 
@@ -18,6 +18,11 @@ const RootNavigator = (props: Props) => {
       }
     {
         routes.map((route: any) => {return(
+            <Route key={route.path} path={route.path} component={route.component}/>
+            )})
+    } 
+    {
+        protectedRoutes.map((route: any) => {return(
             <Route key={route.path} path={route.path} component={route.component}/>
             )})
     }

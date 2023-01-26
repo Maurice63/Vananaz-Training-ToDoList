@@ -6,7 +6,7 @@ display: flex;
 flex-direction: column;
 align-content: center;
 align-items: stretch;
-height: 100vh;
+height: 100%;
 width: 100%;
 padding: 0px;
 margin: 0px;
