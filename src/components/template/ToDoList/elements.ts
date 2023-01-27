@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
 
+const {bluePrimary,black} = colors
 //doc>
 export const Container = styled.div`
     display: flex;
@@ -31,9 +32,9 @@ export const ToDoListHeaderText = styled.h1`
    font-weight: 700;
    font-size: 18px;
    line-height: 21px;
-   color: ${colors.bluePrimary};
+   color: ${bluePrimary};
      &.back {
-        color:${colors.black};
+        color:${black};
      }
 `
 //header<
@@ -51,7 +52,7 @@ align-items: center;
 `
 export const ToDoListInputButton = styled.div`
 display: flex;
-&.hide{
+     &.hide{
      display: none;
     }
 `
@@ -61,7 +62,6 @@ export const ToDoListListContent = styled.div`
 width: 100%;
 height: 100%;
 display: flex;
-
      &.hide{
       display: none;
      }

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
 
+const {bluePrimary,gray} = colors
+
 export const LoginContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -13,7 +15,7 @@ margin: 0px;
 `
 
 export const LoginHeader = styled.div`
-background: ${colors.bluePrimary+"15"};
+background: ${bluePrimary+"15"};
 height: fit-content;
 width: 100%;
 min-width: 320px;
@@ -28,7 +30,7 @@ justify-content: space-around;
 `
 
 export const LoginP = styled.p`
-color:${colors.bluePrimary};
+color:${bluePrimary};
 font-family: 'Roboto';
 font-style: normal;
 font-weight: 400;
@@ -39,7 +41,7 @@ margin:5px;
 `
 
 export const Loginh1 = styled.h1`
-color:${colors.bluePrimary};
+color:${bluePrimary};
 font-weight: 700;
 font-size: 26px;
 line-height: 30px;
@@ -100,7 +102,7 @@ justify-content: space-around;
 `
 
 export const LoginFormP = styled.p`
-color:${colors.gray};
+color:${gray};
 font-family: 'Roboto';
 font-style: normal;
 line-height: 16px;

@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
 
-
+const {lightgray,black}=colors
 export const DrawerContent = styled.div`
     padding-top: 20px;
     padding-bottom: 20px;
     bottom:0;
     height:auto;
     width: 100%;
-    background: ${colors.white};
+    background: ${lightgray};
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -46,5 +46,5 @@ export const Drawercontainer = styled.div`
 export const Drawermask = styled.div`
     height: 100vh;
     width: 100%;
-    background: ${colors.black+"1"};
+    background: ${black+"1"};
 `

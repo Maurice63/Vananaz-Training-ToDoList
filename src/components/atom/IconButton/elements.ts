@@ -1,7 +1,10 @@
 import styled,{css} from "styled-components";
+import colors from "../../../constants/config/theme/colors";
 import { IconButtonProps } from "./types";
 
 let bMaincolor="";
+
+const {transparent,white} = colors 
 
 const iconButton = css`
   ${() => `
@@ -48,16 +51,16 @@ export const IconButtonStyled = styled.button`
     display: flex;
     align-items: center;
     text-align: center;
-    background: ${(props: IconButtonProps) => bMaincolor = props?.color ? props.color: "#FFFFFF00"
+    background: ${({color}: IconButtonProps) => bMaincolor = color ? color: transparent
     };
-    color: ${(props: IconButtonProps) => props?.fontColor ? props.fontColor: "#FFFFFF"
+    color: ${({fontColor}: IconButtonProps) => fontColor ? fontColor: white
     };
-    ${(props: IconButtonProps) =>
-        props.bType === "iconButton" ? iconButton : floatIconButton};
-    border-radius: ${(props: IconButtonProps) =>
-        props.bShape === "circle" ? " 50%;" : " 4px;"};
-    font-size: ${(props: IconButtonProps) => 
-    props.bsize === "small" ? " 14px;": 
-    props.bsize === "middle"? " 18px;":
+    ${({bType}: IconButtonProps) =>
+        bType === "iconButton" ? iconButton : floatIconButton};
+    border-radius: ${({bShape}: IconButtonProps) =>
+        bShape === "circle" ? " 50%;" : " 4px;"};
+    font-size: ${({bsize}: IconButtonProps) => 
+    bsize === "small" ? " 14px;": 
+    bsize === "middle"? " 18px;":
                               " 24px;"};
 `

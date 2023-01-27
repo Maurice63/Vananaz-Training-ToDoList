@@ -2,6 +2,8 @@ import colors from '../../../constants/config/theme/colors';
 import styled,{ css } from 'styled-components';
 import { ButtonProps } from './types';
 
+const {blueSecondary,pinkSecondary,redPrimary,bluePrimary} = colors
+
 let maincolor = "";
 
 const primaryButton = css`
@@ -21,7 +23,7 @@ const primaryButton = css`
     color: white;
   }
   &:disabled {
-    background: ${colors.blueSecondary};
+    background: ${blueSecondary};
     color: white;
   }
 `};`;
@@ -53,16 +55,16 @@ const warningButton = css`
   ${() => `
   border: 1.5px solid transparent;
   font-weight: 700;
-  background: ${colors.pinkSecondary};
+  background: ${pinkSecondary};
   color: ${maincolor};
   &:hover {
     border: 1.5px solid ${maincolor};
-    background: ${colors.pinkSecondary};
+    background: ${pinkSecondary};
     color: ${maincolor};
   }
   &:focus {
     color: ${maincolor};
-    background: ${colors.pinkSecondary};
+    background: ${pinkSecondary};
     border: 1.5px solid ${maincolor};
   }
   &:disabled {
@@ -75,14 +77,17 @@ const warningButton = css`
 export const ButtonStyle = styled.button`
 font-family: roboto;
 border-radius: 4px;
-    ${(props: ButtonProps) => maincolor = props.preset ? colors.redPrimary : props?.color ? props.color: colors.bluePrimary
+    ${({color,preset}: ButtonProps) => maincolor = preset ? redPrimary:
+                                                   color ?  color: 
+                                                            bluePrimary
     };
 
-font-size: ${(props: ButtonProps) => 
-        props.bsize === "small" ? "14px; height: 32px; ":
-        props.bsize === "middle"? "14px; height: 38px; ":
+font-size: ${({bsize}: ButtonProps) => 
+        bsize === "small" ? "14px; height: 32px; ":
+        bsize === "middle"? "14px; height: 38px; ":
                                  "14px; height: 44px; "    
     };
-    ${(props: ButtonProps) =>
-      props.preset? warningButton : props.bType === "primary" ? primaryButton : secondaryButton};
+    ${({preset,bType}: ButtonProps) =>
+      preset? warningButton : 
+      bType === "primary" ? primaryButton : secondaryButton};
 `;

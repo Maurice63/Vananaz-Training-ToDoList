@@ -3,6 +3,7 @@ const colors = {
     white: "#FFFFFF",
     gray:"#828282",
     transparent: "#FFFFFF00",
+    lightgray: "#EEF3F7",
     //blue
     bluePrimary: "#2F80ED",
     blueSecondary: "#9ABFF1",

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
-
+const {gray} =colors
 export const Container = styled.div`
     display: flex;
     flex: 1;
@@ -40,7 +40,7 @@ export const ToDoListdrawers = styled.div`
 `;
 
 export const NoToDop = styled.p`
-color: ${colors.gray}
+color: ${gray}
 font-family: 'Roboto';
 font-style: normal;
 font-weight: 400;
