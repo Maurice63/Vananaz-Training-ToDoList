@@ -46,5 +46,5 @@ export const Drawercontainer = styled.div`
 export const Drawermask = styled.div`
     height: 100vh;
     width: 100%;
-    background: ${colors.black+"10"};
+    background: ${colors.black+"1"};
 `

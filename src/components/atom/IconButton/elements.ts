@@ -6,12 +6,13 @@ let bMaincolor="";
 const iconButton = css`
   ${() => `
   border: 1.5px solid transparent;
-  padding: 2px;
+  padding-right: 10px;
+  font-size: 14px;
   &:hover {
-    border: 1.5px solid white;
+    border: 1.5px solid transparent;
   }
   &:focus {
-    border: 1.5px solid white;
+    border: 1.5px solid transparent;
   }
   &:disabled {
     background: gray;
@@ -26,7 +27,7 @@ const floatIconButton = css`
   padding: 5px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   &:hover {
-    border: 1.5px solid white;
+    border: 1.5px solid ${bMaincolor};
   }
   &:focus {
     border: 1.5px solid ${bMaincolor};
@@ -56,7 +57,7 @@ export const IconButtonStyled = styled.button`
     border-radius: ${(props: IconButtonProps) =>
         props.bShape === "circle" ? " 50%;" : " 4px;"};
     font-size: ${(props: IconButtonProps) => 
-    props.bsize === "small" ? " 16px;": 
-    props.bsize === "middle"? " 20px;":
+    props.bsize === "small" ? " 14px;": 
+    props.bsize === "middle"? " 18px;":
                               " 24px;"};
 `

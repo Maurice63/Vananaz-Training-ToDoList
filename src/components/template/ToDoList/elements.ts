@@ -31,7 +31,6 @@ export const ToDoListHeaderText = styled.h1`
    font-weight: 700;
    font-size: 18px;
    line-height: 21px;
-   font-color${colors.bluePrimary};
    color: ${colors.bluePrimary};
      &.back {
         color:${colors.black};

@@ -143,8 +143,8 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
             children={<PlusOutlined/>}
             onClick={toAddToDo}
             style={{position:"absolute",
-            bottom:"15px",
-            right:"10px",
+            bottom:"20px",
+            right:"20px",
             zIndex:"revert-layer"}}/>:""}
     </Container>
   )
@@ -158,7 +158,7 @@ const ToDoListInput = ({type,onChange,onClick,onPressEnter,hide,value}:ToDoListI
             value={value}
             placeholder={type === "home" || type === "search" ?"Search...":" "}
             prefix={type === "home" || type === "search" ?<SearchOutlined/>:" "}
-            style={{width:"100%", marginRight:"10px"}}
+            style={{width:"100%", marginRight:"10px",color: "#828282", border:"1px solid #828282"}}
             onPressEnter={onPressEnter} 
             onChange={onChange} 
             
@@ -178,7 +178,7 @@ const ToDoListheader = ({toLogIn,toBack,type,back}: ToDoListTHeaderProps) => {
             {back? <IconButton 
             bShape={"square"} 
             bType={"iconButton"} 
-            bsize={"middle"}
+            bsize={"small"}
             color={colors.transparent}
             fontColor={colors.bluePrimary}
             children={<LeftOutlined/>}
@@ -195,7 +195,7 @@ const ToDoListheader = ({toLogIn,toBack,type,back}: ToDoListTHeaderProps) => {
             {back? " ":<IconButton 
             bShape={"square"} 
             bType={"iconButton"} 
-            bsize={"middle"}
+            bsize={"small"}
             color={colors.transparent}
             fontColor={colors.bluePrimary}
             children={<img src={logOutIcon} alt={"log out"}/>}

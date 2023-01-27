@@ -86,6 +86,7 @@ const ToDoList = ({selectionMode,UpdateCallback,searchedTodos,addToDo,search}: T
             key={todo.id} 
             value={todo.todotext} 
             completed={todo.complete}
+            deleteDrawer={targetToDo.id===todo.id && !deletedrawer}
             onTextClick={()=>{todoitemOnTextClick(todo)}}
             onDelete={()=>{todoitemOnDelete(todo)}}
             onUpdate={()=>{todoitemOnUpdate(todo)}}/>

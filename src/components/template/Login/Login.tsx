@@ -81,6 +81,7 @@ const Login = ({onLogin}:props) => {
             <LoginButtonField>
             <Button label={"Login"} 
             bType={"primary"} 
+            bsize={"middle"}
             disabled={!checkCanLogIn()} 
             style={{"width":"100%", marginTop:"30px"}}
             onClick={onLogin}/>

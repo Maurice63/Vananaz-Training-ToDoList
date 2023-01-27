@@ -47,9 +47,10 @@ font-weight: 400;
 font-size: 14px;
 line-height: 16px;
 text-align: center;
+padding-bottom: 10px;
 `
 export const NoToDoContainer = styled.div`
-   width: 50%;
+   width: 100%;
    height: fit-content;
    display: flex;
    flex-direction: column;
@@ -60,7 +61,8 @@ export const NoToDoContainer = styled.div`
 
 export const NoToDoImg = styled.div`
    max-heigth: 50px;
-   max-width: 38px; 
+   max-width: 38px;
+   padding-bottom:20px; 
    width: 50%;
    heigth: fit content;
    display: block;

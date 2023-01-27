@@ -26,8 +26,8 @@ const ToDoItem = ({onDelete,onUpdate,value,onSelect,selected,selectionMode,compl
         <KebabMenu 
         onDelete={onDelete} 
         onUpdate={onUpdate} 
-        onOpen={()=>{setpopupmenu(!popupmenu)}} 
-        onBlur={()=>{setpopupmenu(!popupmenu)}}/>}
+        onOpen={()=>{setpopupmenu(true)}} 
+        onBlur={()=>{setpopupmenu(false)}}/>}
     </ToDoItemContainer>
   )
 }
