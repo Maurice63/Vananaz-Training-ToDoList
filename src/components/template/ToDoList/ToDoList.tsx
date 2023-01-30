@@ -13,10 +13,10 @@ import { Container,
          ToDoListHeaderContainer, 
          ToDoListHeaderText, 
          ToDoListInputButton, 
-         ToDoListInputsContainer,} from './elements';
+         ToDoListInputsContainer,
+         ToDoListInputText,} from './elements';
 import logOutIcon from '../../../assets/logOutIcon.svg'
 import ToDoList from '../../organism/ToDoList';
-import TextInput from '../../atom/TextInput';
 import Button from '../../atom/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAlltodos, 
@@ -154,11 +154,10 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
 const ToDoListInput = ({type,onChange,onClick,onPressEnter,hide,value}:ToDoListInputProps) =>{
     return(
         <ToDoListInputsContainer className={hide?"hide":""}>
-            <TextInput 
+            <ToDoListInputText 
             value={value}
             placeholder={type === "home" || type === "search" ?"Search...":" "}
             prefix={type === "home" || type === "search" ?<SearchOutlined/>:" "}
-            style={{width:"100%", marginRight:"10px",color: "#828282", border:"1px solid #828282"}}
             onPressEnter={onPressEnter} 
             onChange={onChange} 
             
