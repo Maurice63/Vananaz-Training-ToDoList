@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
 
-
+const {lightgray,black}=colors
 export const DrawerContent = styled.div`
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    bottom:0;
     height:auto;
     width: 100%;
-    background: ${colors.white};
+    background: ${lightgray};
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -17,6 +18,7 @@ export const DrawerText = styled.p`
     text-align: center;
     margin: 0px;
     padding: 0px;
+    padding-bottom: 15px;
 `
 
 export const DrawerButtonsContainer = styled.div`
@@ -31,7 +33,9 @@ export const Drawercontainer = styled.div`
     height: 100%;
     width: 100%;
     position: fixed;
-    z-index:1;
+    bottom: 0;
+    top: 0;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
         &.hide{
@@ -40,7 +44,7 @@ export const Drawercontainer = styled.div`
 `
 
 export const Drawermask = styled.div`
-    height: 70%;
+    height: 100vh;
     width: 100%;
-    background: ${colors.black+"50"};
+    background: ${black+"1"};
 `

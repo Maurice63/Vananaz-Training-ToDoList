@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
-
+const {gray} =colors
 export const Container = styled.div`
     display: flex;
+    flex: 1;
     align-items:center;
     align-content:center;
     flex-direction: column;
-    padding-left:10px;
-    padding-right:10px;
     height:100%;
     width:100%;
     justify-content: center;
+    overflow: hidden;
 `;
 
 export const ToDoListContainer = styled.div`
@@ -20,6 +20,7 @@ export const ToDoListContainer = styled.div`
     flex-direction: column;
     height:100%;
     width:100%;
+    overflow: auto;
 `;
 
 export const ToDoListList = styled.div`
@@ -29,7 +30,6 @@ export const ToDoListList = styled.div`
     flex-direction: column;
     height:100%;
     width:100%;
-    overflowY: 'scroll'
 `;
 
 export const ToDoListdrawers = styled.div`
@@ -40,16 +40,17 @@ export const ToDoListdrawers = styled.div`
 `;
 
 export const NoToDop = styled.p`
-color: ${colors.gray}
+color: ${gray}
 font-family: 'Roboto';
 font-style: normal;
 font-weight: 400;
 font-size: 14px;
 line-height: 16px;
 text-align: center;
+padding-bottom: 10px;
 `
 export const NoToDoContainer = styled.div`
-   width: 50%;
+   width: 100%;
    height: fit-content;
    display: flex;
    flex-direction: column;
@@ -59,6 +60,9 @@ export const NoToDoContainer = styled.div`
 `
 
 export const NoToDoImg = styled.div`
+   max-heigth: 50px;
+   max-width: 38px;
+   padding-bottom:20px; 
    width: 50%;
    heigth: fit content;
    display: block;

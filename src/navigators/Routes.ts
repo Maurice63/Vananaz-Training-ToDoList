@@ -1,5 +1,6 @@
 import { FC } from "react";
 import LogInPage from "../components/page/Login";
+import ToDoListPage from "../components/page/ToDoList";
   
 export type routesWithRedirectType = {
     path: string;
@@ -24,5 +25,11 @@ const routes: routesType = [
       component: LogInPage,
     }
   ];
+  const protectedRoutes: routesType = [
+    {
+      path: "/home",
+      component: ToDoListPage,
+    }
+  ];
 
-  export { routes,routesWithRedirect };
+  export { routes,routesWithRedirect,protectedRoutes };

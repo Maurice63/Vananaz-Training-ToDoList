@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
+import TextInput from "../../atom/TextInput";
 
+const {bluePrimary,black,gray} = colors
 //doc>
 export const Container = styled.div`
-    width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 1vh;
+    align-content: center;
+    align-items: center;
+    padding: 15px;
+    height: -webkit-fill-available;
 `
 //doc<
 
@@ -19,6 +22,7 @@ export const ToDoListHeaderContainer = styled.div`
     justify-content: space-between;
     align-content: center;
     align-items: center;
+    padding-bottom: 15px; 
      &.back {
         justify-content: flex-start;
      }
@@ -29,10 +33,9 @@ export const ToDoListHeaderText = styled.h1`
    font-weight: 700;
    font-size: 18px;
    line-height: 21px;
-   font-color${colors.bluePrimary};
-   color: ${colors.bluePrimary};
+   color: ${bluePrimary};
      &.back {
-        color:${colors.black};
+        color:${black};
      }
 `
 //header<
@@ -40,6 +43,7 @@ export const ToDoListHeaderText = styled.h1`
 export const ToDoListInputsContainer = styled.div`
 width: 100%;
 height: fit-content;
+padding-bottom: 10px;
 display: flex;
 align-content: center;
 align-items: center;
@@ -49,15 +53,21 @@ align-items: center;
 `
 export const ToDoListInputButton = styled.div`
 display: flex;
-&.hide{
+     &.hide{
      display: none;
     }
+`
+export const ToDoListInputText = styled(TextInput)`
+width:100%;
+ margin-right:10px;
+ color: ${gray};
+border:1px solid ${gray};
 `
 //inputs<
 //listcontent>
 export const ToDoListListContent = styled.div`
 width: 100%;
-height: 100;
+height: 100%;
 display: flex;
      &.hide{
       display: none;

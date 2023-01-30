@@ -5,8 +5,7 @@ import { ToDoListTProps,
          ToDoListTHeaderProps, 
          ToDoListInputProps } from './types'
 
-import { LeftOutlined, 
-         LogoutOutlined, 
+import { LeftOutlined,
          PlusOutlined, 
          SearchOutlined  } from "@ant-design/icons";
 
@@ -14,10 +13,10 @@ import { Container,
          ToDoListHeaderContainer, 
          ToDoListHeaderText, 
          ToDoListInputButton, 
-         ToDoListInputsContainer,} from './elements';
-
+         ToDoListInputsContainer,
+         ToDoListInputText,} from './elements';
+import logOutIcon from '../../../assets/logOutIcon.svg'
 import ToDoList from '../../organism/ToDoList';
-import TextInput from '../../atom/TextInput';
 import Button from '../../atom/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAlltodos, 
@@ -33,17 +32,18 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
     const dispatch = useDispatch()
     //<
     //component state>
-    const [pageType,setPageType] = useState<ToDoListTHeaderProps["type"]>(undefined)
+    const [pageType,setPageType] = useState<ToDoListTHeaderProps["type"]>("home")
     const [textInput,setTextInput] = useState<string>("")
-    let searchwords:string = ""
     const [searchedTodos,setSearchedTodos]= useState<todoprops[]>([])
     const targetToDo = useRef<todoprops>({id: " ",
     todotext: " ",
     complete: false})
     //<
-    
+    useEffect(()=>{
+        setPageType(pageType)
+    },[pageType]);
     const toReset = () =>{
-        setPageType(undefined)
+        setPageType("home")
         setTextInput("");
         setSearchedTodos([])
         targetToDo.current={id: " ",
@@ -67,19 +67,11 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
         toReset()
         setPageType("add")
     }
-    const searchTodos = () =>{
+    const searchTodos = (searches:string) =>{
         setSearchedTodos( reduxToDos.filter((todo)=>{
-           return todo.todotext.toLowerCase().includes(searchwords.toLowerCase()) && !todo.complete
+           return todo.todotext.toLowerCase().includes(searches.toLowerCase()) && !todo.complete
         }))
     }
-    useEffect(()=>{
-            if(pageType === undefined && searchwords) {setPageType("search")}
-            if(pageType === "search"){
-                setSearchedTodos( reduxToDos.filter((todo)=>{
-                    return todo.todotext.toLowerCase().includes(searchwords.toLowerCase()) && !todo.complete
-                }))
-            }}
-            ,[pageType, reduxToDos, searchwords])
     
     const updateToDo = () =>{
         const newtodo:todoprops = {
@@ -101,14 +93,16 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
     const onPressEnter=(e: React.KeyboardEvent<HTMLInputElement>):void=>{
         //do this for search, add, update
         setTextInput(e.currentTarget.value);
+        if(e.currentTarget.value !== ""){
         if(pageType ==="add"){addToDo()} 
         if(pageType === "update"){updateToDo()}   
+        }
     }
     const onChange=(e: React.ChangeEvent<HTMLInputElement>):void=>{
         setTextInput(e.currentTarget.value);
-        searchwords = e.currentTarget.value
-        if(typeof pageType === 'undefined'){setPageType("search")}
-        if(pageType ==="search"){searchTodos();}
+        if(pageType === "home"){setPageType("search")
+        searchTodos(e.currentTarget.value);}
+        if(pageType ==="search"){searchTodos(e.currentTarget.value);}
         //do this for search
     }
     const onClick = ()=>{
@@ -121,10 +115,10 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
         toLogIn={toLogIn}
         toBack={toReset}
         type={pageType}
-        back={!(pageType === undefined)}
+        back={!(pageType === "home")}
         />
         <ToDoListInput 
-        type={undefined} 
+        type={pageType} 
         onChange={onChange} 
         onClick={onClick} 
         onPressEnter={onPressEnter} 
@@ -138,7 +132,7 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
         search={pageType ==="search"? true:false}
         searchedTodos={searchedTodos}
         />}
-        {(pageType===undefined)
+        {(pageType==="home")
         ?
         <IconButton 
             bShape={"circle"} 
@@ -149,8 +143,8 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
             children={<PlusOutlined/>}
             onClick={toAddToDo}
             style={{position:"absolute",
-            bottom:"10px",
-            right:"10px",
+            bottom:"20px",
+            right:"20px",
             zIndex:"revert-layer"}}/>:""}
     </Container>
   )
@@ -160,16 +154,16 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
 const ToDoListInput = ({type,onChange,onClick,onPressEnter,hide,value}:ToDoListInputProps) =>{
     return(
         <ToDoListInputsContainer className={hide?"hide":""}>
-            <TextInput 
+            <ToDoListInputText 
             value={value}
-            placeholder={type !== "search" || type ?"":"Search..."}
-            prefix={type === "search"?<SearchOutlined/>: " "}
-            style={{width:"100%"}}
+            placeholder={type === "home" || type === "search" ?"Search...":" "}
+            prefix={type === "home" || type === "search" ?<SearchOutlined/>:" "}
             onPressEnter={onPressEnter} 
             onChange={onChange} 
+            
             allowClear/>
-            <ToDoListInputButton className={type?.length?"hide":""}>
-            <Button onClick={onClick} bsize={"middle"} bType={"secondary"} label={"Select"}/>
+            <ToDoListInputButton className={type !== "home"?"hide":""}>
+            <Button onClick={onClick} bsize={"small"} bType={"secondary"} label={"Select"}/>
             </ToDoListInputButton>
         </ToDoListInputsContainer>
     )
@@ -183,13 +177,13 @@ const ToDoListheader = ({toLogIn,toBack,type,back}: ToDoListTHeaderProps) => {
             {back? <IconButton 
             bShape={"square"} 
             bType={"iconButton"} 
-            bsize={"middle"}
+            bsize={"small"}
             color={colors.transparent}
             fontColor={colors.bluePrimary}
             children={<LeftOutlined/>}
             onClick={()=>{toBack()}}/>:" "}
             {
-            <ToDoListHeaderText className={type===undefined?" ":"back"}>
+            <ToDoListHeaderText className={type==="home"?" ":"back"}>
                 {type === "search"?"Search To Do": 
                  type === "select"?"Select To Do": 
                  type === "update" ? "Update To Do" : 
@@ -200,10 +194,10 @@ const ToDoListheader = ({toLogIn,toBack,type,back}: ToDoListTHeaderProps) => {
             {back? " ":<IconButton 
             bShape={"square"} 
             bType={"iconButton"} 
-            bsize={"middle"}
+            bsize={"small"}
             color={colors.transparent}
             fontColor={colors.bluePrimary}
-            children={<LogoutOutlined/>}
+            children={<img src={logOutIcon} alt={"log out"}/>}
             onClick={()=>{toLogIn()}}/>}
         </ToDoListHeaderContainer>
     )

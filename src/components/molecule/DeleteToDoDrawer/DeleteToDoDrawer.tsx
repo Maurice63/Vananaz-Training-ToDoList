@@ -17,8 +17,8 @@ const DeleteToDoDrawer = ({onYes,hidden,hide}: DeleteToDoDrawerProps) => {
         <DrawerContent>
         <DrawerText>Delete to do?</DrawerText>
         <DrawerButtonsContainer>
-            <Button bType={"secondary"} bsize={"middle"} onClick={cancel} label={"No"} preset/>
-            <Button bType={"primary"} bsize={"middle"} onClick={proceed} label={"Yes"}/>
+            <Button bType={"secondary"} bsize={"middle"} onClick={cancel} style={{width: "80px"}} label={"No"} preset/>
+            <Button bType={"primary"} bsize={"middle"} onClick={proceed} style={{width: "80px"}} label={"Yes"}/>
         </DrawerButtonsContainer>
         </DrawerContent>
     </Drawercontainer>

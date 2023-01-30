@@ -31,6 +31,7 @@ export const floatIconButton = Template.bind({});
 
 floatIconButton.args = {
     bType: "floatIconButton",
+    bShape: "circle",
     children: <PlusOutlined/>,
     fontColor: colors.white,
     color: colors.bluePrimary

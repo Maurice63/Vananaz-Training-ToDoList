@@ -1,49 +1,37 @@
 import styled,{css} from "styled-components";
+import colors from "../../../constants/config/theme/colors";
 import { IconButtonProps } from "./types";
-import { Button } from "antd";
 
-let bMaincolor="";
-let bFontColor="";
+const {transparent,white,bluePrimary} = colors 
 
 const iconButton = css`
-  ${() => `
   border: 1.5px solid transparent;
-  background: ${bMaincolor};
-  color: ${bFontColor};
-  padding: 2px;
+  padding-right: 10px;
+  font-size: 14px;
+  background: ${transparent};
+  border-radius: 4px;
   &:hover {
-    border: 1.5px solid white;
-    background: ${bMaincolor};
-    color: ${bFontColor};
+    border: 1.5px solid transparent;
   }
   &:focus {
-    color: ${bFontColor};
-    background: ${bMaincolor};
-    border: 1.5px solid ${bMaincolor};
+    border: 1.5px solid transparent;
   }
   &:disabled {
     background: gray;
     color: darkgray;
     border: 1.5px solid darkgray;
-  }
-`};`;
+  }`;
 
 const floatIconButton = css`
   ${() => `
   border: 1.5px solid transparent;
-  background: ${bMaincolor};
-  color: ${bFontColor};
   padding: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border: 1.5px solid ${bluePrimary};
+  background: ${bluePrimary};
+  border-radius: 50%;
   &:hover {
-    border: 1.5px solid white;
-    background: ${bMaincolor};
-    color: ${bFontColor};
   }
   &:focus {
-    color: ${bFontColor};
-    background: ${bMaincolor};
-    border: 1.5px solid ${bMaincolor};
   }
   &:disabled {
     background: gray;
@@ -52,22 +40,21 @@ const floatIconButton = css`
   }
 `};`;
 
-export const IconButtonStyled = styled(Button)`
-    ${(props: IconButtonProps) => bMaincolor = props?.color ? props.color: "#FFFFFF00"
-    };
-    ${(props: IconButtonProps) => bFontColor = props?.fontColor ? props.fontColor: "#FFFFFF"
-    };
-    ${(props: IconButtonProps) =>
-        props.bType === "iconButton" ? iconButton : floatIconButton};
-    ${(props: IconButtonProps) =>
-        props.bShape === "circle" ? "border-radius: 50%;" : "border-radius: 4px;"};
-    ${(props: IconButtonProps) => 
-    props.bsize === "small"
-        ? "height: auto; font-size: 14px;"
-        : props.bsize === "middle"? "height: auto; font-size: 16px;":
-        "height: auto; font-size: 18px;"    
-      };
-    .ant-btn{
-        height: 0px
-    }
+export const IconButtonStyled = styled.button`
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    height: auto; 
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: ${({fontColor}: IconButtonProps) => 
+    fontColor ? fontColor: white};
+    font-size: ${({bsize}: IconButtonProps) => 
+    bsize === "small" ? " 14px;": 
+    bsize === "middle"? " 18px;":
+                        " 24px;"};
+    ${({bType}: IconButtonProps) =>
+    bType === "iconButton" ? iconButton : floatIconButton};
 `

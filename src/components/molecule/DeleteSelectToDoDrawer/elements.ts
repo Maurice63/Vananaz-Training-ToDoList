@@ -1,19 +1,21 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
-import { Button } from "antd";
+const {transparent,lightgray}=colors
 
-export const DrawerButton = styled(Button)`${(props) => `
+
+export const DrawerButton = styled.button`${({color}) => `
 width: 100%;
+height: 100%;
+padding-left: 40px;
+text-align: start;
 border: 1.5px solid transparent;
-background: ${colors.transparent};
-color: ${props.color};
+background: ${transparent};
+color: ${color};
 &:hover {
   border: 1.5px solid white;
-  color: ${props.color};
 }
 &:focus {
-  color: ${props.color};
-  border: 1.5px solid ${props.color};
+  color: ${color};
 }
 &:disabled {
   background: gray;
@@ -23,15 +25,16 @@ color: ${props.color};
 `};`;
 
 export const Drawercontainer = styled.div`
-    height: fit-content;
+    padding: 10px;
+    height: 151px;
     width: 100%;
     position: fixed;
     bottom: 0px;
-    padding-bottom: 5px;
     z-index:1;
     display: flex;
-    backgraund: ${colors.white};
+    background: ${lightgray};
     flex-direction: column;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.1);
         &.hide{
             display: none;
         }
