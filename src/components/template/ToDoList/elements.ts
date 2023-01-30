@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import colors from "../../../constants/config/theme/colors";
+import TextInput from "../../atom/TextInput";
 
-const {bluePrimary,black} = colors
+const {bluePrimary,black,gray} = colors
 //doc>
 export const Container = styled.div`
     display: flex;
@@ -55,6 +56,12 @@ display: flex;
      &.hide{
      display: none;
     }
+`
+export const ToDoListInputText = styled(TextInput)`
+width:100%;
+ margin-right:10px;
+ color: ${gray};
+border:1px solid ${gray};
 `
 //inputs<
 //listcontent>
