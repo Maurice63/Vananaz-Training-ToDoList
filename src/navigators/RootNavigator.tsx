@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import AuthRoutes from './AuthRoutes'
 import { protectedRoutes, routes,routesWithRedirect} from './Routes'
 
 type Props = {
@@ -23,7 +24,9 @@ const RootNavigator = (props: Props) => {
     } 
     {
         protectedRoutes.map((route: any) => {return(
-            <Route key={route.path} path={route.path} component={route.component}/>
+            <AuthRoutes children={ 
+            <Route key={route.path} path={route.path} component={route.component}/> 
+            }/>            
             )})
     }
     </Switch>

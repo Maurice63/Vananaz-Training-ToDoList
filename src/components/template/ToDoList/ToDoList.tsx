@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import colors from '../../../constants/config/theme/colors'
 import IconButton from '../../atom/IconButton'
-import { ToDoListTProps,
-         ToDoListTHeaderProps, 
+import { ToDoListTHeaderProps, 
          ToDoListInputProps } from './types'
 
 import { LeftOutlined,
@@ -24,13 +23,18 @@ import { selectAlltodos,
          todoprops, 
          updatetodo } from '../../../redux/features/ToDos';
 import Toast from '../../atom/Toast';
+import { useSignOut } from '../../../hooks/todo';
 
+const OnLogOut = () =>{
+    useSignOut();
+}
 
-const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
+const ToDoListTemplate = () => {
     //global state>
     const reduxToDos = useSelector(selectAlltodos)
     const dispatch = useDispatch()
     //<
+    
     //component state>
     const [pageType,setPageType] = useState<ToDoListTHeaderProps["type"]>("home")
     const [textInput,setTextInput] = useState<string>("")
@@ -42,6 +46,7 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
     useEffect(()=>{
         setPageType(pageType)
     },[pageType]);
+    
     const toReset = () =>{
         setPageType("home")
         setTextInput("");
@@ -112,7 +117,7 @@ const ToDoListTemplate = ({toLogIn}: ToDoListTProps) => {
   return (
     <Container>
         <ToDoListheader
-        toLogIn={toLogIn}
+        toLogIn={OnLogOut}
         toBack={toReset}
         type={pageType}
         back={!(pageType === "home")}

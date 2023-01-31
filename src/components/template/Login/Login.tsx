@@ -13,13 +13,18 @@ import undraw_To_Do_List from '../../../assets/undraw_To_do_list_re_9nt71.svg'
 import TextInput from '../../atom/TextInput'
 import {Input} from 'antd'
 import Button from '../../atom/Button'
+import { useSignIn } from '../../../hooks/todo'
 
-type props = {
-    onLogin: ()=> void
-}
-const Login = ({onLogin}:props) => {
+const Login = () => {
     const [email,setEmail] = useState<string>("")
     const [password,setPassword] = useState<string>("")
+    
+    //need to add firebaseauth
+    
+    const OnLogin = ()=> {
+        //add login
+        useSignIn(email,password);
+    }
     //TextInputs helper functions>
     const onEnterEmail=(e: React.KeyboardEvent<HTMLInputElement>):void=>{
         setEmail(e.currentTarget.value);
@@ -84,7 +89,7 @@ const Login = ({onLogin}:props) => {
             bsize={"middle"}
             disabled={!checkCanLogIn()} 
             style={{"width":"100%", marginTop:"30px"}}
-            onClick={onLogin}/>
+            onClick={OnLogin}/>
             </LoginButtonField>
         </LoginForm>
     </LoginContainer>

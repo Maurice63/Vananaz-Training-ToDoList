@@ -1,16 +1,12 @@
-import { nanoid, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = { 
-    id: nanoid(),
-    username: 'UserName',
-    password: "password",
+const initialState = {
+    email: ' ',
 }
 
 export type userProps = {
     user: {
-        id: string,
-        username: string,
-        password: string,
+        email: string,
     }
 }
 
