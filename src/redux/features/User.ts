@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
-    email: ' ',
+    uid: '',
 }
 
 export type userProps = {
-    user: {
-        email: string,
-    }
+        uid: string,
 }
 
 const userSlice = createSlice({
@@ -15,12 +13,16 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         putUser(state, action: PayloadAction<userProps>) {
-            const {user} = action.payload
-            state = user;
+            state.uid = action.payload.uid
+        }
+        ,removeUser(state, action){
+            state.uid = ''
         }
     }
 })
 
-export const selectAllUsers = (state :userProps) => state.user;
+export const selectAllUsers = (state :userProps) => state.uid;
+
+export const {putUser,removeUser } = userSlice.actions
 
 export default userSlice.reducer

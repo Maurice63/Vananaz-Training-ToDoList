@@ -23,18 +23,23 @@ import { selectAlltodos,
          todoprops, 
          updatetodo } from '../../../redux/features/ToDos';
 import Toast from '../../atom/Toast';
-import { useSignOut } from '../../../hooks/todo';
+import { useAuthAction } from '../../../hooks/auth';
+import { useHistory } from 'react-router-dom';
+import { message } from 'antd';
 
-const OnLogOut = () =>{
-    useSignOut();
-}
+
 
 const ToDoListTemplate = () => {
     //global state>
     const reduxToDos = useSelector(selectAlltodos)
     const dispatch = useDispatch()
+    const { logout } = useAuthAction();
+    const history = useHistory();
     //<
-    
+    const OnLogOut = () =>{
+        logout()
+        
+    }
     //component state>
     const [pageType,setPageType] = useState<ToDoListTHeaderProps["type"]>("home")
     const [textInput,setTextInput] = useState<string>("")
