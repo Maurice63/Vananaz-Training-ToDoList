@@ -25,16 +25,27 @@ import {
 } from "../../../redux/features/ToDos";
 import Toast from "../../atom/Toast";
 import { useAuthAction } from "../../../hooks/auth";
+import { useTodoAction } from "../../../hooks/todo";
+import { selectUser } from "../../../redux/features/User";
 
 const ToDoListTemplate = () => {
   //global state>
+  const user = useSelector(selectUser);
+  const { fetchTodoList } = useTodoAction();
   const reduxToDos = useSelector(selectAlltodos);
   const dispatch = useDispatch();
   const { logout } = useAuthAction();
+  console.log(user);
+  useEffect(() => {
+    fetchTodoList(user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user.uid]);
   //<
+  //hooks>
   const OnLogOut = () => {
     logout();
   };
+  //<
   //component state>
   const [pageType, setPageType] =
     useState<ToDoListTHeaderProps["type"]>("home");
@@ -75,7 +86,7 @@ const ToDoListTemplate = () => {
   };
   const searchTodos = (searches: string) => {
     setSearchedTodos(
-      reduxToDos.filter((todo) => {
+      reduxToDos.filter((todo: todoprops) => {
         return (
           todo.todotext.toLowerCase().includes(searches.toLowerCase()) &&
           !todo.complete
