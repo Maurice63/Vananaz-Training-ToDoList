@@ -1,28 +1,39 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
-const initialState = {
-    uid: '',
-}
+const initialState: userProps = {
+  uid: "",
+  isloading: false,
+};
 
 export type userProps = {
-        uid: string,
-}
+  uid: string;
+  isloading: boolean;
+};
+
+export type user = {
+  user: userProps;
+};
 
 const userSlice = createSlice({
-    name: 'users',
-    initialState,
-    reducers: {
-        putUser(state, action: PayloadAction<userProps>) {
-            state.uid = action.payload.uid
-        }
-        ,removeUser(state, action){
-            state.uid = ''
-        }
-    }
-})
+  name: "user",
+  initialState,
+  reducers: {
+    putUser(state, action: PayloadAction<userProps>) {
+      const newUser = action.payload;
+      state.uid = newUser.uid;
+    },
+    removeUser(state, action) {
+      state.uid = "";
+    },
+    setIsLoading(state, action: PayloadAction<boolean>) {
+      state.isloading = action.payload;
+    },
+  },
+});
 
-export const selectAllUsers = (state :userProps) => state.uid;
+export const selectUser = (state: RootState) => state.user;
 
-export const {putUser,removeUser } = userSlice.actions
+export const { putUser, removeUser } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;

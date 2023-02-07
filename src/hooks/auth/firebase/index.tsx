@@ -16,7 +16,10 @@ export const useAuthAction: AuthHooks["useAuthAction"] = () => {
         .signInWithEmailAndPassword(email, password)
         .then((results) => {
           if (results !== null) {
-            const currentUser: userProps = { uid: results.user?.uid || "" };
+            const currentUser: userProps = {
+              isloading: false,
+              uid: results.user?.uid || "",
+            };
             dispatch(putUser(currentUser));
             history.push("/home");
           }

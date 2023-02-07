@@ -1,100 +1,104 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = [
-    {
-        id: nanoid(),
-        todotext: " my first todo",
-        complete: false,
-    },
-    {
-        id: nanoid(),
-        todotext: " my second todo",
-        complete: false,
-    },
-    {
-        id: nanoid(),
-        todotext: " my third todo",
-        complete: false,
-    },
-    {
-        id: nanoid(),
-        todotext: " my forth todo",
-        complete: false,
-    }
-]
+const initialState: todoprops[] = [];
 
-export type todoprops ={
-    id: string,
-    todotext: string,
-    complete: boolean,
-}
+export type todoprops = {
+  id: string;
+  todotext: string;
+  complete: boolean;
+};
 
 export type todos = {
-    todos: [todoprops]
-}
+  todos: todoprops[];
+};
 
 const todosSlice = createSlice({
-    name: 'todos',
-    initialState,
-    reducers: {
-        todoAdded: {
-            reducer(state, action :PayloadAction<todoprops>) {
-                state.push(action.payload)
-            },
-            prepare({todotext}:todoprops) {
-                return {
-                    payload: {
-                        id: nanoid(),
-                        todotext,
-                        complete: false,
-                    }
-                }
-            }
-        },
-        updatetodo(state, action:PayloadAction<todoprops>) {
-            const { id,todotext } = action.payload
-            const existingtodo = state.find(todo => todo.id === id)
-            if (existingtodo) {
-                existingtodo.todotext=todotext
-                state.splice(state.findIndex((todo) => todo.id === id),1)
-                state.push(existingtodo)
-            }
-            
-        },
-        completetodo(state, action:PayloadAction<todoprops>) {
-            const { id } = action.payload
-            const existingtodo = state.find(todo => todo.id === id)
-            if (existingtodo) {
-                existingtodo.complete=!existingtodo.complete
-            }
-        },
-        completetodos(state, action:PayloadAction<todoprops[]>) {
-            const todos = action.payload
-            todos.forEach(currenttodo => {
-                const correctTodo = state.find(todo => {
-                    return todo.id === currenttodo.id
-                    })
-                if(correctTodo)
-                {
-                    correctTodo.complete=!correctTodo.complete
-                }
-            });
-        },
-        deletetodo(state, action:PayloadAction<todoprops>) {
-            const { id } = action.payload
-            state.splice(state.findIndex((todo) => todo.id === id),1)
-        },
-        deletetodos(state, action:PayloadAction<todoprops[]>) {
-            const todos = action.payload
-            todos.forEach(currenttodo => {
-                state.splice(state.findIndex((todo) => todo.id === currenttodo.id),1)
-            });
-        },
-    }
-})
+  name: "todos",
+  initialState,
+  reducers: {
+    todoAdded: {
+      reducer(state, action: PayloadAction<todoprops>) {
+        state.push(action.payload);
+      },
+      prepare({ todotext }: todoprops) {
+        return {
+          payload: {
+            id: nanoid(),
+            todotext,
+            complete: false,
+          },
+        };
+      },
+    },
+    reset(state, action) {
+      return initialState;
+    },
+    addtodos(state, action: PayloadAction<todoprops[]>) {
+      const todos = action.payload;
+      todos.forEach((currenttodo) => {
+        state.push(currenttodo);
+      });
+    },
+    updatetodo(state, action: PayloadAction<todoprops>) {
+      const { id, todotext } = action.payload;
+      const existingtodo = state.find((todo: todoprops) => todo.id === id);
+      if (existingtodo) {
+        existingtodo.todotext = todotext;
+        state.splice(
+          state.findIndex((todo: todoprops) => todo.id === id),
+          1
+        );
+        state.push(existingtodo);
+      }
+    },
+    completetodo(state, action: PayloadAction<todoprops>) {
+      const { id } = action.payload;
+      const existingtodo = state.find((todo: todoprops) => todo.id === id);
+      if (existingtodo) {
+        existingtodo.complete = !existingtodo.complete;
+      }
+    },
+    completetodos(state, action: PayloadAction<todoprops[]>) {
+      const todos = action.payload;
+      todos.forEach((currenttodo) => {
+        const correctTodo = state.find((todo: todoprops) => {
+          return todo.id === currenttodo.id;
+        });
+        if (correctTodo) {
+          correctTodo.complete = !correctTodo.complete;
+        }
+      });
+    },
+    deletetodo(state, action: PayloadAction<todoprops>) {
+      const { id } = action.payload;
+      state.splice(
+        state.findIndex((todo: todoprops) => todo.id === id),
+        1
+      );
+    },
+    deletetodos(state, action: PayloadAction<todoprops[]>) {
+      const todos = action.payload;
+      todos.forEach((currenttodo) => {
+        state.splice(
+          state.findIndex((todo: todoprops) => todo.id === currenttodo.id),
+          1
+        );
+      });
+    },
+  },
+});
 
 export const selectAlltodos = (state: todos) => state.todos;
 
-export const { todoAdded, completetodo, completetodos, deletetodo, deletetodos, updatetodo } = todosSlice.actions
+export const {
+  todoAdded,
+  addtodos,
+  completetodo,
+  completetodos,
+  deletetodo,
+  deletetodos,
+  updatetodo,
+  reset,
+} = todosSlice.actions;
 
-export default todosSlice.reducer
+export default todosSlice.reducer;
