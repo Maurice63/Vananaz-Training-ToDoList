@@ -16,14 +16,8 @@ import {
 import logOutIcon from "../../../assets/logOutIcon.svg";
 import ToDoList from "../../organism/ToDoList";
 import Button from "../../atom/Button";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectAlltodos,
-  todoAdded,
-  todoprops,
-  updatetodo,
-} from "../../../redux/features/ToDos";
-import Toast from "../../atom/Toast";
+import { useSelector } from "react-redux";
+import { selectAlltodos, todoprops } from "../../../redux/features/ToDos";
 import { useAuthAction } from "../../../hooks/auth";
 import { useTodoAction } from "../../../hooks/todo";
 import { selectUser } from "../../../redux/features/User";
@@ -31,15 +25,15 @@ import { selectUser } from "../../../redux/features/User";
 const ToDoListTemplate = () => {
   //global state>
   const user = useSelector(selectUser);
-  const { fetchTodoList } = useTodoAction();
   const reduxToDos = useSelector(selectAlltodos);
-  const dispatch = useDispatch();
+  const { fetchTodoList, addTodo, updateTodo } = useTodoAction();
   const { logout } = useAuthAction();
-  console.log(user);
+
   useEffect(() => {
-    fetchTodoList(user);
+    console.log(user);
+    fetchTodoList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.uid]);
+  }, [user]);
   //<
   //hooks>
   const OnLogOut = () => {
@@ -74,13 +68,7 @@ const ToDoListTemplate = () => {
   };
   const addToDo = () => {
     //redux action
-    const todo: todoprops = {
-      id: " ",
-      todotext: textInput,
-      complete: false,
-    };
-    dispatch(todoAdded(todo));
-    Toast({ message: "To Do Added" });
+    addTodo(textInput);
     toReset();
     setPageType("add");
   };
@@ -96,13 +84,7 @@ const ToDoListTemplate = () => {
   };
 
   const updateToDo = () => {
-    const newtodo: todoprops = {
-      id: targetToDo.current.id,
-      todotext: textInput,
-      complete: targetToDo.current.complete,
-    };
-    dispatch(updatetodo(newtodo));
-    Toast({ message: "To Do Updated" });
+    updateTodo(targetToDo.current.id, textInput, targetToDo.current.complete);
     toReset();
     //redux action
   };

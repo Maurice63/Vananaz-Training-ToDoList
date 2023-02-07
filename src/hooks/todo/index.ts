@@ -1,5 +1,5 @@
 import React from "react";
-import { userProps } from "../../redux/features/User";
+import { todoprops } from "../../redux/features/ToDos";
 import { useClient } from "../client";
 
 export type firestoretodo = {
@@ -10,15 +10,15 @@ export type firestoretodo = {
 
 export type TodoHooks = {
   useTodoAction(): {
-    fetchTodoList: (user: userProps) => Promise<void>;
+    fetchTodoList: () => Promise<void>;
     updateTodo: (
-      user: userProps,
       id: string,
-      todotext?: string,
-      complete?: boolean
+      todotext: string,
+      complete: boolean
     ) => Promise<void>;
-    addTodo: (todotext: string, user: userProps) => Promise<void>;
-    deleteTodo: (id: string, user: userProps) => Promise<void>;
+    addTodo: (todotext: string) => Promise<void>;
+    deleteTodo: (id: string) => Promise<void>;
+    batchProcess: (todos: todoprops[], complete: boolean) => Promise<void>;
   };
 };
 

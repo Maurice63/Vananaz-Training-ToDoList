@@ -30,9 +30,14 @@ const todosSlice = createSlice({
         };
       },
     },
+    reset(state, action) {
+      return initialState;
+    },
     addtodos(state, action: PayloadAction<todoprops[]>) {
-      const todos = [...action.payload];
-      state = todos;
+      const todos = action.payload;
+      todos.forEach((currenttodo) => {
+        state.push(currenttodo);
+      });
     },
     updatetodo(state, action: PayloadAction<todoprops>) {
       const { id, todotext } = action.payload;
@@ -93,6 +98,7 @@ export const {
   deletetodo,
   deletetodos,
   updatetodo,
+  reset,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

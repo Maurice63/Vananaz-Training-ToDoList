@@ -8,8 +8,9 @@ type AuthRouteProps = {
 };
 
 const AuthRoutes = ({ children }: AuthRouteProps) => {
-  const user = useSelector(selectUser);
-  if (user.uid === "") {
+  const { uid } = useSelector(selectUser);
+  console.log(uid);
+  if (uid === "") {
     return <Redirect to="/login" />;
   } else return <>{children}</>;
 };

@@ -1,17 +1,31 @@
 import { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import firebase from "../../../firebase/firebaseConfig";
-import { addtodos, todoprops } from "../../../redux/features/ToDos";
-import { userProps } from "../../../redux/features/User";
-
+import {
+  addtodos,
+  completetodo,
+  completetodos,
+  deletetodo,
+  deletetodos,
+  reset,
+  todoAdded,
+  todoprops,
+  updatetodo,
+} from "../../../redux/features/ToDos";
+import { selectUser } from "../../../redux/features/User";
+import Toast from "../../../components/atom/Toast";
 import { TodoHooks } from "../index";
 
 export const COLLECTION_NAME = "todos";
 
 export const useTodoAction: TodoHooks["useTodoAction"] = () => {
-  //redux user.uid const { user } = useAuth();
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  const fetchTodoList = useCallback(async (user: userProps) => {
+  const fetchTodoList = useCallback(async () => {
+    if (user.uid === "") {
+      throw new Error(`User not loggeed in`);
+    }
+
     const todoList: todoprops[] = [];
     await firebase
       .firestore()
@@ -27,70 +41,132 @@ export const useTodoAction: TodoHooks["useTodoAction"] = () => {
             });
           }
         });
+        dispatch(reset({}));
+        dispatch(addtodos(todoList));
       })
       .catch((error) => {
         console.log(error);
       });
-    console.log(todoList);
-    console.log(user);
-    await dispatch(addtodos(todoList));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const updateTodo = useCallback(
-    async (
-      user: userProps,
-      id: string,
-      todotext: string | undefined,
-      complete: boolean | undefined
-    ) => {
-      if (user.uid !== "") {
+    async (id: string, todotext: string, complete: boolean) => {
+      const todoUpdated = {
+        id: id,
+        todotext: todotext,
+        complete: complete,
+      };
+      if (user.uid === "") {
         throw new Error(`User not loggeed in`);
       }
+
       const docRef = firebase.firestore().collection(COLLECTION_NAME).doc(id);
-      if (todotext !== "" && (complete === null || complete === undefined)) {
+      if (todotext === "" && (complete !== null || complete !== undefined)) {
+        await docRef
+          .update({
+            complete: !complete,
+          })
+          .then(() => {
+            if (!complete) {
+              Toast({ message: "To Do completed." });
+            }
+            dispatch(completetodo(todoUpdated));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else if (todotext !== "" || todotext !== undefined) {
         await docRef
           .update({
             todotext: todotext,
           })
-          .then(() => {})
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-      if (todotext === "" && (complete !== null || complete !== undefined)) {
-        await docRef
-          .update({
-            complete: complete,
+          .then((result) => {
+            Toast({ message: "To Do updated." });
+            dispatch(updatetodo(todoUpdated));
           })
-          .then(() => {})
           .catch((error) => {
             console.log(error);
           });
       }
     },
-    []
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user.uid]
   );
 
-  const addTodo = useCallback(async (todotext: string, user: userProps) => {
-    if (user.uid !== "") {
-      throw new Error(`User not loggeed in`);
-    }
-    await firebase.firestore().collection(COLLECTION_NAME).add({
-      complete: false,
-      todotext: todotext,
-      userId: user.uid,
-    });
-  }, []);
-  const deleteTodo = useCallback(async (id: string, user: userProps) => {
-    if (user.uid !== "") {
-      throw new Error(`User not loggeed in`);
-    }
-    await firebase
-      .firestore()
-      .collection(COLLECTION_NAME)
-      .doc(id)
-      .delete()
-      .then();
-  }, []);
-  return { fetchTodoList, deleteTodo, addTodo, updateTodo };
+  const addTodo = useCallback(
+    async (todotext: string) => {
+      if (user.uid === "") {
+        throw new Error(`User not loggeed in`);
+      }
+      await firebase
+        .firestore()
+        .collection(COLLECTION_NAME)
+        .add({
+          complete: false,
+          todotext: todotext,
+          userId: user.uid,
+        })
+        .then((result) => {
+          const newToDo: todoprops = {
+            id: result.id,
+            todotext: todotext,
+            complete: false,
+          };
+          dispatch(todoAdded(newToDo));
+          Toast({ message: "To Do added." });
+          //add the result to redux
+        })
+        .catch(() => {});
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user.uid]
+  );
+  const deleteTodo = useCallback(
+    async (id: string) => {
+      if (user.uid === "") {
+        throw new Error(`User not loggeed in`);
+      }
+      await firebase
+        .firestore()
+        .collection(COLLECTION_NAME)
+        .doc(id)
+        .delete()
+        .then(() => {
+          Toast({ message: "To Do deleted." });
+          dispatch(deletetodo({ id: id } as todoprops));
+        });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user.uid]
+  );
+  const batchProcess = useCallback(
+    async (todos: todoprops[], complete: boolean) => {
+      if (user.uid === "") {
+        throw new Error(`User not loggeed in`);
+      }
+      const docRef = firebase.firestore().collection(COLLECTION_NAME);
+      if (complete) {
+        const batch = firebase.firestore().batch();
+        todos.forEach((todo) => {
+          batch.update(docRef.doc(todo.id), { complete: true });
+        });
+        await batch.commit().then(() => {
+          Toast({ message: "To Dos completed." });
+          dispatch(completetodos(todos));
+        });
+      } else {
+        const batch = firebase.firestore().batch();
+        todos.forEach((todo) => {
+          batch.delete(docRef.doc(todo.id));
+        });
+        await batch.commit().then(() => {
+          Toast({ message: "To Dos deleted." });
+          dispatch(deletetodos(todos));
+        });
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user.uid]
+  );
+  return { fetchTodoList, deleteTodo, addTodo, updateTodo, batchProcess };
 };
