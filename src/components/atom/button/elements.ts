@@ -77,9 +77,7 @@ const warningButton = css`
 export const ButtonStyle = styled.button`
 font-family: roboto;
 border-radius: 4px;
-    ${({color,preset}: ButtonProps) => maincolor = preset ? redPrimary:
-                                                   color ?  color: 
-                                                            bluePrimary
+    ${({preset}: ButtonProps) => maincolor = preset ? redPrimary : bluePrimary
     };
 
 font-size: ${({bsize}: ButtonProps) => 

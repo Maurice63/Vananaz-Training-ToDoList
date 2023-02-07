@@ -11,9 +11,7 @@ export default {
 const Template: ComponentStory<typeof ToDoListTemplate> = (args) => {
 return(
     <Provider store={store}>
-    <ToDoListTemplate
-    toLogIn={args.toLogIn}
-    />
+    <ToDoListTemplate/>
     </Provider>
     )
 };

@@ -1,6 +1,4 @@
-export type ToDoListTProps = {
-    toLogIn: () => void;
-}
+
 export type ToDoListTHeaderProps = {
     toLogIn: () => void;
     back?: boolean;
