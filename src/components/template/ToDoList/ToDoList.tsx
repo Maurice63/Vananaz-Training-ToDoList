@@ -32,7 +32,7 @@ const ToDoListTemplate = () => {
   const dispatch = useDispatch();
   const { logout } = useAuthAction();
   //<
-  const OnLogOut = () => {
+  const onLogOut = () => {
     logout();
   };
   //component state>
@@ -131,7 +131,7 @@ const ToDoListTemplate = () => {
   return (
     <Container>
       <ToDoListheader
-        toLogIn={OnLogOut}
+        toLogIn={onLogOut}
         toBack={toReset}
         type={pageType}
         back={!(pageType === "home")}

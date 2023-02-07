@@ -23,10 +23,9 @@ const Login = () => {
   const { loginWithEmail } = useAuthAction();
   //need to add firebaseauth
 
-  const OnLogin = () => {
+  const onLogin = () => {
     //add login
-    loginWithEmail(email, password)
-    
+    loginWithEmail(email, password);
   };
   //TextInputs helper functions>
   const onEnterEmail = (e: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -46,6 +45,7 @@ const Login = () => {
     checkCanLogIn();
   };
   const emailchecker = () => {
+    // eslint-disable-next-line no-useless-escape
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       return true;
     }
@@ -96,7 +96,7 @@ const Login = () => {
             bsize={"middle"}
             disabled={!checkCanLogIn()}
             style={{ width: "100%", marginTop: "30px" }}
-            onClick={OnLogin}
+            onClick={onLogin}
           />
         </LoginButtonField>
       </LoginForm>
