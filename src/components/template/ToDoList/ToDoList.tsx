@@ -36,7 +36,7 @@ const ToDoListTemplate = () => {
   }, [user]);
   //<
   //hooks>
-  const OnLogOut = () => {
+  const onLogOut = () => {
     logout();
   };
   //<
@@ -124,7 +124,7 @@ const ToDoListTemplate = () => {
   return (
     <Container>
       <ToDoListheader
-        toLogIn={OnLogOut}
+        toLogIn={onLogOut}
         toBack={toReset}
         type={pageType}
         back={!(pageType === "home")}
